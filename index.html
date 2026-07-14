@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E1nstein 个人门户 · 探索与创造</title>
-<meta name="description" content="E1nstein 的个人综合门户，包含精选导航、实用在线工具、个人项目与创意灵感。">
+<title>E1nstein 的数字大脑 · 思考·工具·创造力</title>
+<meta name="description" content="E1nstein 的数字大脑——一个展示思考、工具与创造力的极客知识花园。好奇心驱动的探索之旅。">
 <style>
 /* ===== Reset & Base ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -76,6 +76,21 @@ body{
   background: radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, transparent 70%);
   top: 40%; left: -80px; z-index: -1; pointer-events: none;
 }
+
+/* 故事线装饰元素: E=mc² 极简公式 (呼应 Einstein 品牌名) */
+.bg-formula {
+  position: fixed; bottom: 120px; right: 40px; z-index: -1;
+  font-family: var(--mono); font-size: 3.5rem; font-weight: 800;
+  opacity: 0.04; pointer-events: none; user-select: none;
+  letter-spacing: 2px; line-height: 1;
+}
+.dark .bg-formula { opacity: 0.06; }
+.formula-text { color: var(--text); }
+.formula-eq { color: var(--accent); margin: 0 4px; }
+.formula-super { font-size: 2rem; vertical-align: super; color: var(--text); }
+
+/* Responsive: 小屏隐藏装饰公式 */
+@media(max-width:640px){ .bg-formula { display: none; } }
 
 a{color:var(--accent);text-decoration:none;transition: all 0.2s;}
 a:hover{color:var(--accent-hover)}
@@ -488,6 +503,58 @@ header{
 }
 .stat-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
 
+/* Tagline / Story Line */
+.tagline-area {
+  text-align: center; margin-bottom: 28px; padding: 20px 24px;
+  position: relative;
+}
+.tagline-area::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  border-radius: 2px;
+}
+.tagline-text {
+  font-size: 1rem; font-weight: 500; color: var(--text2);
+  line-height: 1.7; font-style: italic; letter-spacing: 0.01em;
+  max-width: 680px; margin: 0 auto;
+}
+.tagline-author {
+  font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;
+  font-weight: 400;
+}
+
+/* Exploration Grid */
+.explore-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px;
+}
+.explore-card {
+  padding: 16px 18px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all 0.25s; backdrop-filter: blur(10px);
+}
+.explore-card:hover {
+  border-color: var(--accent); transform: translateY(-2px);
+  box-shadow: var(--shadow-hover); background: var(--surface2);
+}
+.explore-card .explore-tag {
+  font-size: 0.7rem; display: inline-block;
+  padding: 2px 8px; border-radius: 6px;
+  background: var(--accent-light); color: var(--accent);
+  font-weight: 500; margin-bottom: 6px;
+}
+.explore-card .explore-title {
+  font-size: 0.88rem; font-weight: 600; color: var(--text);
+  margin-bottom: 4px;
+}
+.explore-card .explore-desc {
+  font-size: 0.78rem; color: var(--text2); line-height: 1.5;
+}
+.explore-card .explore-meta {
+  font-size: 0.7rem; color: var(--text-muted); margin-top: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+
 /* Footer */
 footer{
   text-align:center;padding:32px 24px;color:var(--text-muted);font-size:.82rem;
@@ -592,19 +659,21 @@ footer a{color:var(--accent)}
 <div class="bg-glow-1"></div>
 <div class="bg-glow-2"></div>
 <div class="bg-glow-3"></div>
+<!-- 故事线装饰: 爱因斯坦公式 E=mc² 作为极简装饰 -->
+<div class="bg-formula" aria-hidden="true"><span class="formula-text">E</span><span class="formula-eq">=</span><span class="formula-text">mc</span><span class="formula-super">²</span></div>
 
 <header>
   <div class="header-inner">
     <a href="/" class="logo">
       <span class="logo-icon">E</span>
-      <span>E1nstein 个人门户</span>
+      <span>E1nstein 的数字大脑</span>
     </a>
     <div class="header-actions">
       <div class="nav-links">
         <a href="#linksSection" class="nav-link">🔗 导航</a>
         <a href="#toolsSection" class="nav-link">🛠️ 工具</a>
         <a href="#projectsSection" class="nav-link">📦 项目</a>
-        <a href="#skillsSection" class="nav-link">💡 技能</a>
+        <a href="#exploreSection" class="nav-link">🔬 探索</a>
       </div>
       <button class="theme-btn" id="themeToggle" aria-label="切换主题">🌙</button>
     </div>
@@ -620,9 +689,9 @@ footer a{color:var(--accent)}
         <div class="avatar">E</div>
       </div>
       <h2>E1nstein</h2>
-      <div class="title">开发者 · 创造者 · 终身学习者</div>
+      <div class="title">🧠 好奇心驱动的数字探索者</div>
       <p class="bio">
-        热爱探索 AI、前端技术与创意设计。行胜于言，致力于用代码和灵感构建有用、优雅的数字化体验。欢迎来到我的个人主页！
+        这里是我的「数字大脑」——一个将思考、工具与创造力交织在一起的极客知识花园。热衷探索 AI 前沿、前端技术与效率工具，相信「想象力比知识更重要」。每一行代码、每一个工具、每一段文字，都是好奇心驱动的产物。欢迎走进我的探索世界。
       </p>
       <div class="social-links">
         <a href="https://github.com/girlsleague" target="_blank" class="social-item" title="GitHub">🐙</a>
@@ -677,7 +746,13 @@ footer a{color:var(--accent)}
       <div class="stat-card"><div class="stat-number" id="statLinks">0</div><div class="stat-label">精选导航</div></div>
       <div class="stat-card"><div class="stat-number" id="statTools">0</div><div class="stat-label">实用工具</div></div>
       <div class="stat-card"><div class="stat-number" id="statProjects">0</div><div class="stat-label">个人项目</div></div>
-      <div class="stat-card"><div class="stat-number" id="statSkills">0</div><div class="stat-label">掌握技能</div></div>
+      <div class="stat-card"><div class="stat-number" id="statExplore">0</div><div class="stat-label">探索主题</div></div>
+    </div>
+
+    <!-- Tagline / Story Line -->
+    <div class="tagline-area">
+      <div class="tagline-text">「想象力比知识更重要，因为知识是有限的，而想象力概括着世界的一切。」</div>
+      <div class="tagline-author">— Albert Einstein</div>
     </div>
 
     <!-- Search Box -->
@@ -725,6 +800,12 @@ footer a{color:var(--accent)}
       <div class="section-title"><span class="emoji">📖</span> 正在阅读</div>
       <div class="reading-list" id="readingList"></div>
     </div>
+
+    <!-- Exploration -->
+    <div class="section" id="exploreSection">
+      <div class="section-title"><span class="emoji">🔬</span> 最近探索</div>
+      <div class="explore-grid" id="exploreGrid"></div>
+    </div>
   </main>
 </div>
 
@@ -732,7 +813,7 @@ footer a{color:var(--accent)}
 <button class="back-top" id="backTop">↑</button>
 
 <footer>
-  <p>© 2026 <a href="https://github.com/girlsleague" target="_blank">E1nstein</a> · Crafted with ❤️ and AI · <span id="visitYear">0</span> 次访问计数 (本设备)</p>
+  <p>© 2026 <a href="https://github.com/girlsleague" target="_blank">E1nstein</a> · 好奇心驱动的数字大脑 · <span id="visitYear">0</span> 次探索</p>
 </footer>
 
 <script>
@@ -758,6 +839,13 @@ const QUOTES = [
   { text: "“在互联网上，没人知道你是一条狗。”", author: "Peter Steiner" },
   { text: "“数据是新的石油。”", author: "Clive Humby" },
   { text: "“把简单的事情复杂化是平庸，把复杂的事情简单化是才华。”", author: "佚名" },
+  { text: "“想象力比知识更重要，因为知识是有限的。”", author: "Albert Einstein" },
+  { text: "“不要努力成为一个成功者，要努力成为一个有价值的人。”", author: "Albert Einstein" },
+  { text: "“在混乱中寻找简单，在争执中寻找和谐，在困难中寻找机会。”", author: "Albert Einstein" },
+  { text: "“唯一真正的智慧是知道自己一无所知。”", author: "Socrates" },
+  { text: "“我没有什么特别的才能，只有强烈的好奇心。”", author: "Albert Einstein" },
+  { text: "“学习过去，如果是为了预测未来，那就是在创新。”", author: "Alan Kay" },
+  { text: "“把你手上的工作做到最好，你就会成为最好的人。”", author: "Marie Curie" },
 ];
 
 // ===== Categories Data (7 个分类) =====
@@ -945,6 +1033,16 @@ const READING = [
   { title: '程序员修炼之道', desc: '软件开发者的成长之路', icon: '📗', status: '已读完' },
 ];
 
+// ===== Exploration Data (故事线: 好奇心驱动的探索) =====
+const EXPLORATIONS = [
+  { tag: 'AI', title: 'DeepSeek R1 推理机制', desc: '研究国产开源推理模型的思维链(CoT)机制与其在编程场景下的实际表现。', icon: '🧠', time: '探索中' },
+  { tag: '前端', title: 'React Server Components 深度实践', desc: '在 Next.js App Router 下探索 RSC 与客户端组件的边界与最佳组合模式。', icon: '⚛️', time: '深入中' },
+  { tag: '效率', title: '个人知识管理系统构建', desc: '用 Obsidian + Git + AI 打造第二大脑，探索 Zettelkasten 方法的数字化实践。', icon: '🧩', time: '迭代中' },
+  { tag: 'AI', title: 'Claude Code Agent 工作流', desc: '研究 AI Agent 在真实项目中的多步骤编排、工具调用与自主决策模式。', icon: '🤖', time: '实践总结' },
+  { tag: '设计', title: '玻璃拟态设计系统完善', desc: '打磨个人门户的 Design Token 体系，从组件库到 design.md 的标准化输出。', icon: '🎨', time: '持续优化' },
+  { tag: '工具', title: 'Vercel + Cloudflare 架构', desc: '探索边缘计算与传统 Serverless 的混合部署架构，优化全球访问速度。', icon: '☁️', time: '研究中' },
+];
+
 // ===== Elements =====
 const catFilter = document.getElementById('catFilter');
 const linkGrid = document.getElementById('linkGrid');
@@ -952,6 +1050,7 @@ const toolsGrid = document.getElementById('toolsGrid');
 const projectGrid = document.getElementById('projectGrid');
 const skillsGrid = document.getElementById('skillsGrid');
 const readingList = document.getElementById('readingList');
+const exploreGrid = document.getElementById('exploreGrid');
 const searchInput = document.getElementById('searchInput');
 const searchClear = document.getElementById('searchClear');
 const emptyState = document.getElementById('emptyState');
@@ -987,7 +1086,7 @@ updateQuote();
 document.getElementById('statLinks').textContent = LINKS.length;
 document.getElementById('statTools').textContent = TOOLS.length;
 document.getElementById('statProjects').textContent = PROJECTS.length;
-document.getElementById('statSkills').textContent = SKILLS.length;
+document.getElementById('statExplore').textContent = EXPLORATIONS.length;
 
 // ===== Visit Counter (localStorage) =====
 (function() {
@@ -1096,6 +1195,18 @@ function renderReading() {
         <div class="reading-desc">${r.desc}</div>
         <span class="reading-status">${r.status}</span>
       </div>
+    </div>
+  `).join('');
+}
+
+// ===== Render Explorations =====
+function renderExplorations() {
+  exploreGrid.innerHTML = EXPLORATIONS.map(e => `
+    <div class="explore-card">
+      <span class="explore-tag">${e.icon} ${e.tag}</span>
+      <div class="explore-title">${e.title}</div>
+      <div class="explore-desc">${e.desc}</div>
+      <div class="explore-meta">⏳ ${e.time}</div>
     </div>
   `).join('');
 }
@@ -1812,6 +1923,7 @@ renderTools();
 renderProjects();
 renderSkills();
 renderReading();
+renderExplorations();
 </script>
 </body>
 </html>
