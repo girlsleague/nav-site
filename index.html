@@ -203,7 +203,13 @@ header{
 }
 
 /* Sidebar */
-.sidebar { display: flex; flex-direction: column; gap: 20px; }
+.sidebar {
+  display: flex; flex-direction: column; gap: 20px;
+  position: sticky; top: 80px; align-self: start; max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
 .glass-panel {
   background: var(--surface);
@@ -381,14 +387,14 @@ header{
 
 /* Link Grid */
 .link-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;
 }
 .link-card{
-  display:flex;align-items:center;gap:14px;
+  display:flex;align-items:center;gap:10px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius:var(--radius);
-  padding:14px 18px;transition:all .25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius:var(--radius-sm);
+  padding:10px 14px;transition:all .25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor:pointer;
   position:relative;overflow:hidden;
   backdrop-filter: blur(10px);
@@ -401,25 +407,44 @@ header{
 }
 .link-card:active{transform:translateY(0)}
 .link-icon{
-  width:40px;height:40px;border-radius:10px;
+  width:32px;height:32px;border-radius:8px;
   display:flex;align-items:center;justify-content:center;
-  font-size:1.25rem;flex-shrink:0;
+  font-size:1rem;flex-shrink:0;
   background:var(--accent-light);color:var(--accent);
   transition: transform 0.3s;
 }
 .link-card:hover .link-icon { transform: scale(1.1) rotate(5deg); }
 .link-info{flex:1;min-width:0}
 .link-info .name{
-  font-weight:600;font-size:.9rem;display:block;margin-bottom:2px;
+  font-weight:600;font-size:.82rem;display:block;margin-bottom:1px;
   color: var(--text);
 }
 .link-info .desc{
-  font-size:.78rem;color:var(--text-muted);
+  font-size:.72rem;color:var(--text-muted);
   display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
 }
 .link-arrow{color:var(--text-muted);font-size:.8rem;transition:all .2s;flex-shrink:0}
 .link-card:hover .link-arrow{color:var(--accent);transform:translateX(3px)}
 .link-card.hidden{display:none}
+
+/* 展开/收起按钮 */
+.link-expand-wrap {
+  grid-column: 1 / -1; display: flex; justify-content: center; padding: 8px 0 4px;
+}
+.link-expand-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 24px; border-radius: 20px;
+  border: 1px dashed var(--border);
+  background: var(--surface); color: var(--accent);
+  font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: all 0.25s;
+  backdrop-filter: blur(4px);
+}
+.link-expand-btn:hover {
+  border-color: var(--accent); border-style: solid;
+  background: var(--accent-light); transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
 
 /* Tools Grid */
 .tools-grid{
@@ -654,11 +679,13 @@ footer a{color:var(--accent)}
 @media(max-width:960px){
   .main-layout { grid-template-columns: 1fr; }
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .sidebar { position: static; max-height: none; overflow: visible; }
 }
 @media(max-width:640px){
   .header-inner{padding:12px 16px}
   .main-layout {padding:16px 16px 40px; gap: 20px;}
   .link-grid{grid-template-columns:1fr}
+  .link-expand-btn{width:100%;justify-content:center}
   .tools-grid{grid-template-columns:repeat(2,1fr)}
   .project-grid{grid-template-columns:1fr}
   .reading-list{grid-template-columns:1fr}
@@ -1199,6 +1226,7 @@ const quoteText = document.getElementById('quoteText');
 const quoteAuthor = document.getElementById('quoteAuthor');
 
 let activeCat = 'all';
+let linkExpanded = false; // 控制导航是否全部展开
 
 // ===== Live Clock & Quotes Widget =====
 function updateClock() {
@@ -1251,12 +1279,13 @@ function buildCategoryFilter() {
       catFilter.querySelector('.cat-btn.active')?.classList.remove('active');
       btn.classList.add('active');
       activeCat = btn.dataset.cat;
+      linkExpanded = false; // 切换分类时重置展开状态
       renderLinks();
     });
   });
 }
 
-// ===== Render Navigation Links =====
+// ===== Render Navigation Links (可折叠) =====
 function renderLinks() {
   const query = searchInput.value.toLowerCase().trim();
   const filtered = LINKS.filter(l => {
@@ -1275,7 +1304,14 @@ function renderLinks() {
   }
 
   emptyState.classList.remove('show');
-  linkGrid.innerHTML = filtered.map(l => `
+
+  // 默认折叠: 只在"全部"且无搜索时折叠, 其他情况全展开
+  const isCollapsed = activeCat === 'all' && !query && !linkExpanded;
+  const limit = 20;
+  const showItems = isCollapsed ? filtered.slice(0, limit) : filtered;
+  const hidden = filtered.length - limit;
+
+  let html = showItems.map(l => `
     <a class="link-card" href="${l.url}" target="_blank" rel="noopener noreferrer">
       <div class="link-icon">${l.icon}</div>
       <div class="link-info">
@@ -1285,6 +1321,43 @@ function renderLinks() {
       <span class="link-arrow">→</span>
     </a>
   `).join('');
+
+  // 折叠时显示展开按钮
+  if (isCollapsed && hidden > 0) {
+    html += `
+      <div class="link-expand-wrap">
+        <button class="link-expand-btn" id="linkExpandBtn">
+          🚀 展开全部 ${filtered.length} 条导航
+        </button>
+      </div>
+    `;
+  } else if (linkExpanded && filtered.length > limit) {
+    html += `
+      <div class="link-expand-wrap">
+        <button class="link-expand-btn" id="linkCollapseBtn">
+          ▲ 收起部分导航
+        </button>
+      </div>
+    `;
+  }
+
+  linkGrid.innerHTML = html;
+
+  // 绑定展开/收起事件
+  const expandBtn = document.getElementById('linkExpandBtn');
+  if (expandBtn) {
+    expandBtn.addEventListener('click', () => {
+      linkExpanded = true;
+      renderLinks();
+    });
+  }
+  const collapseBtn = document.getElementById('linkCollapseBtn');
+  if (collapseBtn) {
+    collapseBtn.addEventListener('click', () => {
+      linkExpanded = false;
+      renderLinks();
+    });
+  }
 }
 
 // ===== Render Tools =====
