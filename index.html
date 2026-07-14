@@ -62,39 +62,32 @@ body{
 
 /* Background Decorative Elements */
 .bg-glow-1 {
-  position: fixed;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
+  position: fixed; width: 400px; height: 400px; border-radius: 50%;
   background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
-  top: -100px;
-  right: -100px;
-  z-index: -1;
-  pointer-events: none;
+  top: -100px; right: -100px; z-index: -1; pointer-events: none;
 }
 .bg-glow-2 {
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
+  position: fixed; width: 500px; height: 500px; border-radius: 50%;
   background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
-  bottom: -150px;
-  left: -150px;
-  z-index: -1;
-  pointer-events: none;
+  bottom: -150px; left: -150px; z-index: -1; pointer-events: none;
+}
+.bg-glow-3 {
+  position: fixed; width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, transparent 70%);
+  top: 40%; left: -80px; z-index: -1; pointer-events: none;
 }
 
 a{color:var(--accent);text-decoration:none;transition: all 0.2s;}
 a:hover{color:var(--accent-hover)}
 ::selection{background:var(--accent);color:#fff}
 
-/* ===== Scrollbar ===== */
+/* Scrollbar */
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(99, 102, 241, 0.2);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:rgba(99, 102, 241, 0.45)}
 
-/* ===== Header ===== */
+/* Header */
 header{
   position:sticky;top:0;z-index:100;
   backdrop-filter: blur(20px);
@@ -129,8 +122,19 @@ header{
   backdrop-filter: blur(4px);
 }
 .theme-btn:hover{background:var(--accent-light);transform: scale(1.05);}
+.nav-links {
+  display: flex; gap: 8px;
+}
+.nav-link {
+  padding: 6px 14px; border-radius: 8px;
+  font-size: 0.82rem; font-weight: 500; color: var(--text2);
+  transition: all 0.2s; cursor: pointer;
+  border: none; background: transparent; font-family: var(--font);
+}
+.nav-link:hover { background: var(--accent-light); color: var(--accent); }
+.nav-link.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
 
-/* ===== Portal Layout ===== */
+/* Portal Layout */
 .main-layout {
   max-width: 1200px;
   margin: 0 auto;
@@ -140,12 +144,9 @@ header{
   gap: 30px;
 }
 
-/* ===== Profile Card & Widgets ===== */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+/* Sidebar */
+.sidebar { display: flex; flex-direction: column; gap: 20px; }
+
 .glass-panel {
   background: var(--surface);
   backdrop-filter: blur(20px);
@@ -161,140 +162,59 @@ header{
   border-color: var(--border-active);
 }
 
-.profile-card {
-  text-align: center;
-}
+.profile-card { text-align: center; }
 .avatar-wrap {
-  position: relative;
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 16px;
+  position: relative; width: 90px; height: 90px; margin: 0 auto 16px;
 }
 .avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  width: 100%; height: 100%; border-radius: 50%;
   background: linear-gradient(135deg, #818cf8, #c084fc);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem; font-weight: 800; color: white;
   border: 3px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
-.profile-card h2 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin-bottom: 6px;
-  letter-spacing: -0.02em;
-}
-.profile-card .title {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-}
+.profile-card h2 { font-size: 1.35rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.02em; }
+.profile-card .title { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px; }
 .profile-card .bio {
-  font-size: 0.85rem;
-  color: var(--text2);
-  line-height: 1.6;
-  margin-bottom: 20px;
-  text-align: justify;
+  font-size: 0.85rem; color: var(--text2); line-height: 1.6;
+  margin-bottom: 20px; text-align: justify;
 }
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
+.social-links { display: flex; justify-content: center; gap: 12px; }
 .social-item {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  color: var(--text);
-  transition: all 0.25s;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--surface2); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; color: var(--text); transition: all 0.25s;
 }
-.social-item:hover {
-  transform: translateY(-3px);
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
+.social-item:hover { transform: translateY(-3px); background: var(--accent); color: white; border-color: var(--accent); }
 
 /* Widget Panel */
-.widget-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+.widget-panel { display: flex; flex-direction: column; gap: 16px; }
 .widget-item {
-  border-bottom: 1px dashed var(--border);
-  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border); padding-bottom: 12px;
 }
-.widget-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
+.widget-item:last-child { border-bottom: none; padding-bottom: 0; }
 .widget-title {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);
+  letter-spacing: 0.05em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
 }
-.quote-text {
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: var(--text2);
-  font-style: italic;
-}
-.quote-author {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-align: right;
-  margin-top: 4px;
-}
+.quote-text { font-size: 0.82rem; line-height: 1.5; color: var(--text2); font-style: italic; }
+.quote-author { font-size: 0.75rem; color: var(--text-muted); text-align: right; margin-top: 4px; }
 .time-display {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text);
-  font-family: var(--mono);
+  font-size: 1.4rem; font-weight: 700; color: var(--text); font-family: var(--mono);
 }
-.date-display {
-  font-size: 0.8rem;
-  color: var(--text2);
-  margin-top: 2px;
-}
+.date-display { font-size: 0.8rem; color: var(--text2); margin-top: 2px; }
 .status-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  color: #10b981;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; color: #10b981;
   background: rgba(16, 185, 129, 0.12);
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-weight: 500;
+  padding: 4px 10px; border-radius: 20px; font-weight: 500;
 }
-.dark .status-tag {
-  color: #34d399;
-  background: rgba(52, 211, 153, 0.15);
-}
+.dark .status-tag { color: #34d399; background: rgba(52, 211, 153, 0.15); }
 .status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: currentColor;
-  animation: pulse 1.8s infinite;
+  width: 8px; height: 8px; border-radius: 50%;
+  background-color: currentColor; animation: pulse 1.8s infinite;
 }
 @keyframes pulse {
   0% { transform: scale(0.95); opacity: 0.5; }
@@ -302,10 +222,37 @@ header{
   100% { transform: scale(0.95); opacity: 0.5; }
 }
 
-/* ===== Search Box ===== */
-.search-container {
-  margin-bottom: 24px;
+/* Weather Widget */
+.weather-info {
+  display: flex; align-items: center; gap: 12px;
 }
+.weather-icon { font-size: 2.2rem; line-height: 1; }
+.weather-temp { font-size: 1.5rem; font-weight: 700; font-family: var(--mono); }
+.weather-detail { font-size: 0.78rem; color: var(--text2); }
+.weather-city { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+.weather-loading { font-size: 0.8rem; color: var(--text-muted); padding: 8px 0; }
+
+/* Pomodoro Timer */
+.pomodoro-display {
+  text-align: center; padding: 4px 0;
+}
+.pomodoro-time {
+  font-size: 2rem; font-weight: 700; font-family: var(--mono); color: var(--accent);
+  letter-spacing: 2px; margin-bottom: 8px;
+}
+.pomodoro-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; }
+.pomodoro-controls { display: flex; gap: 8px; justify-content: center; }
+.pomodoro-btn {
+  padding: 6px 14px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--text2); cursor: pointer;
+  font-size: 0.8rem; font-weight: 500; transition: all 0.2s; font-family: var(--font);
+}
+.pomodoro-btn:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+.pomodoro-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.pomodoro-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Search Box */
+.search-container { margin-bottom: 24px; }
 .search-box {
   display:flex;align-items:center;gap:12px;
   background: var(--surface);
@@ -333,7 +280,7 @@ header{
 .search-clear.visible{display:block}
 .search-clear:hover{background:var(--surface2)}
 
-/* ===== Categories ===== */
+/* Category Filter */
 .cat-filter{
   display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;
 }
@@ -364,7 +311,7 @@ header{
 }
 .cat-btn.active .count{background:rgba(255,255,255,.2);color:#fff}
 
-/* ===== Section ===== */
+/* Section */
 .section{margin-bottom:36px}
 .section-title{
   display:flex;align-items:center;gap:10px;
@@ -374,7 +321,7 @@ header{
 }
 .section-title .emoji{font-size:1.25rem}
 
-/* ===== Link Grid ===== */
+/* Link Grid */
 .link-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;
 }
@@ -402,9 +349,7 @@ header{
   background:var(--accent-light);color:var(--accent);
   transition: transform 0.3s;
 }
-.link-card:hover .link-icon {
-  transform: scale(1.1) rotate(5deg);
-}
+.link-card:hover .link-icon { transform: scale(1.1) rotate(5deg); }
 .link-info{flex:1;min-width:0}
 .link-info .name{
   font-weight:600;font-size:.9rem;display:block;margin-bottom:2px;
@@ -418,7 +363,7 @@ header{
 .link-card:hover .link-arrow{color:var(--accent);transform:translateX(3px)}
 .link-card.hidden{display:none}
 
-/* ===== Tools Section ===== */
+/* Tools Grid */
 .tools-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;
 }
@@ -436,18 +381,114 @@ header{
   box-shadow: var(--shadow-hover);
   background: var(--surface2);
 }
-.tool-card .icon{
-  font-size:2rem;margin-bottom:8px;
-  transition: transform 0.3s;
-}
-.tool-card:hover .icon {
-  transform: scale(1.15);
-}
+.tool-card .icon{font-size:2rem;margin-bottom:8px; transition: transform 0.3s;}
+.tool-card:hover .icon { transform: scale(1.15); }
 .tool-card .name{font-weight:600;font-size:.9rem;margin-bottom:4px;color: var(--text);}
 .tool-card .desc{font-size:.78rem;color:var(--text-muted)}
 .tool-card.hidden{display:none}
 
-/* ===== Footer ===== */
+/* Project Cards */
+.project-grid {
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;
+}
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px;
+  transition:all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+.project-card:hover {
+  border-color:var(--accent);
+  transform:translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  background: var(--surface2);
+}
+.project-card .project-icon {
+  font-size: 1.8rem; margin-bottom: 10px;
+}
+.project-card .project-name {
+  font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: var(--text);
+}
+.project-card .project-desc {
+  font-size: 0.82rem; color: var(--text2); line-height: 1.5; margin-bottom: 12px;
+}
+.project-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.project-tag {
+  font-size: 0.7rem; padding: 2px 8px; border-radius: 6px;
+  background: var(--accent-light); color: var(--accent); font-weight: 500;
+}
+.project-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.78rem; font-weight: 600; margin-top: 10px;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.skill-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  font-size: 0.85rem; font-weight: 500; color: var(--text2);
+  transition: all 0.2s; backdrop-filter: blur(10px);
+}
+.skill-tag:hover {
+  border-color: var(--accent); color: var(--accent);
+  transform: translateY(-2px); box-shadow: var(--shadow-hover);
+}
+
+/* Reading Grid */
+.reading-list {
+  display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 12px;
+}
+.reading-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s; backdrop-filter: blur(10px);
+}
+.reading-item:hover {
+  border-color: var(--border-active); background: var(--surface2);
+  transform: translateY(-2px);
+}
+.reading-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+.reading-body { flex: 1; min-width: 0; }
+.reading-title { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.reading-desc { font-size: 0.75rem; color: var(--text-muted); }
+.reading-status {
+  font-size: 0.7rem; display: inline-block;
+  padding: 1px 8px; border-radius: 10px; margin-top: 4px;
+  background: var(--accent-light); color: var(--accent);
+}
+
+/* Stats / Achievement Bar */
+.stats-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  margin-bottom: 36px;
+}
+.stat-card {
+  text-align: center; padding: 18px 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(10px); transition: all 0.2s;
+}
+.stat-card:hover {
+  transform: translateY(-2px); box-shadow: var(--shadow-hover);
+  border-color: var(--border-active);
+}
+.stat-number {
+  font-size: 1.6rem; font-weight: 800; color: var(--accent);
+  font-family: var(--mono);
+}
+.stat-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+
+/* Footer */
 footer{
   text-align:center;padding:32px 24px;color:var(--text-muted);font-size:.82rem;
   border-top:1px solid var(--border);margin-top:40px;
@@ -456,30 +497,46 @@ footer{
 }
 footer a{color:var(--accent)}
 
-/* ===== Responsive ===== */
+/* Back to Top */
+.back-top {
+  position: fixed; bottom: 30px; right: 30px; z-index: 50;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none;
+  font-size: 1.2rem; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s; opacity: 0; pointer-events: none;
+  backdrop-filter: blur(10px);
+}
+.back-top.visible { opacity: 1; pointer-events: auto; }
+.back-top:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4); }
+
+/* Responsive */
 @media(max-width:960px){
-  .main-layout {
-    grid-template-columns: 1fr;
-  }
+  .main-layout { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
 }
 @media(max-width:640px){
   .header-inner{padding:12px 16px}
   .main-layout {padding:16px 16px 40px; gap: 20px;}
   .link-grid{grid-template-columns:1fr}
   .tools-grid{grid-template-columns:repeat(2,1fr)}
+  .project-grid{grid-template-columns:1fr}
+  .reading-list{grid-template-columns:1fr}
   .cat-btn{padding:6px 12px;font-size:.8rem}
+  .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .nav-links { display: none; }
 }
 
-/* ===== Animation ===== */
+/* Animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.link-card,.tool-card,.section,.sidebar > div{animation:fadeUp .4s cubic-bezier(0.25, 1, 0.5, 1) both}
-.link-card:nth-child(1){animation-delay:.05s}
-.link-card:nth-child(2){animation-delay:.08s}
-.link-card:nth-child(3){animation-delay:.11s}
-.link-card:nth-child(4){animation-delay:.14s}
-.link-card:nth-child(5){animation-delay:.17s}
+.link-card,.tool-card,.section,.sidebar > div,.project-card,.reading-item,.stat-card{animation:fadeUp .4s cubic-bezier(0.25, 1, 0.5, 1) both}
+.link-card:nth-child(1){animation-delay:.03s}
+.link-card:nth-child(2){animation-delay:.06s}
+.link-card:nth-child(3){animation-delay:.09s}
+.link-card:nth-child(4){animation-delay:.12s}
+.link-card:nth-child(5){animation-delay:.15s}
 
-/* ===== Empty State ===== */
+/* Empty State */
 .empty-state{
   text-align:center;padding:40px 20px;color:var(--text-muted);
   display:none;grid-column:1/-1;
@@ -487,7 +544,7 @@ footer a{color:var(--accent)}
 .empty-state .icon{font-size:2.5rem;margin-bottom:12px}
 .empty-state.show{display:block}
 
-/* Tool Input styles inside Modal */
+/* Tool Input styles */
 .modal-input {
   width:100%;padding:10px 14px;
   border:1.5px solid var(--border);
@@ -499,9 +556,7 @@ footer a{color:var(--accent)}
   outline: none;
   transition: border-color 0.2s;
 }
-.modal-input:focus {
-  border-color: var(--accent);
-}
+.modal-input:focus { border-color: var(--accent); }
 .modal-textarea {
   width:100%;min-height:100px;padding:10px 14px;
   border:1.5px solid var(--border);
@@ -513,47 +568,30 @@ footer a{color:var(--accent)}
   outline: none;
   transition: border-color 0.2s;
 }
-.modal-textarea:focus {
-  border-color: var(--accent);
-}
+.modal-textarea:focus { border-color: var(--accent); }
 .modal-btn {
-  padding:10px 16px;
-  border:none;
-  border-radius:8px;
-  background:var(--accent);
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-  font-size:.9rem;
+  padding:10px 16px; border:none; border-radius:8px;
+  background:var(--accent); color:#fff; font-weight:600;
+  cursor:pointer; font-size:.9rem;
   transition: background 0.2s, transform 0.1s;
 }
-.modal-btn:hover {
-  background: var(--accent-hover);
-}
-.modal-btn:active {
-  transform: scale(0.98);
-}
+.modal-btn:hover { background: var(--accent-hover); }
+.modal-btn:active { transform: scale(0.98); }
 .modal-btn-secondary {
   padding:10px 16px;
-  border:1px solid var(--border);
-  border-radius:8px;
-  background:var(--surface2);
-  color:var(--text);
-  font-weight:600;
-  cursor:pointer;
-  font-size:.9rem;
+  border:1px solid var(--border); border-radius:8px;
+  background:var(--surface2); color:var(--text);
+  font-weight:600; cursor:pointer; font-size:.9rem;
   transition: all 0.2s;
 }
-.modal-btn-secondary:hover {
-  background: var(--accent-light);
-  border-color: var(--accent);
-}
+.modal-btn-secondary:hover { background: var(--accent-light); border-color: var(--accent); }
 </style>
 </head>
 <body>
 
 <div class="bg-glow-1"></div>
 <div class="bg-glow-2"></div>
+<div class="bg-glow-3"></div>
 
 <header>
   <div class="header-inner">
@@ -562,6 +600,12 @@ footer a{color:var(--accent)}
       <span>E1nstein 个人门户</span>
     </a>
     <div class="header-actions">
+      <div class="nav-links">
+        <a href="#linksSection" class="nav-link">🔗 导航</a>
+        <a href="#toolsSection" class="nav-link">🛠️ 工具</a>
+        <a href="#projectsSection" class="nav-link">📦 项目</a>
+        <a href="#skillsSection" class="nav-link">💡 技能</a>
+      </div>
       <button class="theme-btn" id="themeToggle" aria-label="切换主题">🌙</button>
     </div>
   </div>
@@ -600,6 +644,23 @@ footer a{color:var(--accent)}
         <div class="quote-author" id="quoteAuthor">— Steve Jobs</div>
       </div>
       <div class="widget-item">
+        <div class="widget-title">🌤️ 天气</div>
+        <div id="weatherWidget">
+          <div class="weather-loading">正在获取天气信息…</div>
+        </div>
+      </div>
+      <div class="widget-item">
+        <div class="widget-title">🍅 番茄钟</div>
+        <div class="pomodoro-display">
+          <div class="pomodoro-time" id="pomodoroTime">25:00</div>
+          <div class="pomodoro-label" id="pomodoroLabel">专注 · 待开始</div>
+          <div class="pomodoro-controls">
+            <button class="pomodoro-btn" id="pomodoroStart">▶ 开始</button>
+            <button class="pomodoro-btn" id="pomodoroReset">↺ 重置</button>
+          </div>
+        </div>
+      </div>
+      <div class="widget-item">
         <div class="widget-title">🟢 运行状态</div>
         <div class="status-tag">
           <span class="status-dot"></span>
@@ -611,6 +672,14 @@ footer a{color:var(--accent)}
 
   <!-- Main Content Area -->
   <main class="content-area">
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-card"><div class="stat-number" id="statLinks">0</div><div class="stat-label">精选导航</div></div>
+      <div class="stat-card"><div class="stat-number" id="statTools">0</div><div class="stat-label">实用工具</div></div>
+      <div class="stat-card"><div class="stat-number" id="statProjects">0</div><div class="stat-label">个人项目</div></div>
+      <div class="stat-card"><div class="stat-number" id="statSkills">0</div><div class="stat-label">掌握技能</div></div>
+    </div>
+
     <!-- Search Box -->
     <div class="search-container">
       <div class="search-box">
@@ -638,15 +707,36 @@ footer a{color:var(--accent)}
       <div class="section-title"><span class="emoji">🛠️</span> 在线小工具</div>
       <div class="tools-grid" id="toolsGrid"></div>
     </div>
+
+    <!-- Projects -->
+    <div class="section" id="projectsSection">
+      <div class="section-title"><span class="emoji">📦</span> 个人项目</div>
+      <div class="project-grid" id="projectGrid"></div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section" id="skillsSection">
+      <div class="section-title"><span class="emoji">💡</span> 技术栈</div>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+
+    <!-- Reading -->
+    <div class="section" id="readingSection">
+      <div class="section-title"><span class="emoji">📖</span> 正在阅读</div>
+      <div class="reading-list" id="readingList"></div>
+    </div>
   </main>
 </div>
 
+<!-- Back to Top -->
+<button class="back-top" id="backTop">↑</button>
+
 <footer>
-  <p>© 2026 <a href="https://github.com/girlsleague" target="_blank">E1nstein</a> · Crafted with ❤️ and AI</p>
+  <p>© 2026 <a href="https://github.com/girlsleague" target="_blank">E1nstein</a> · Crafted with ❤️ and AI · <span id="visitYear">0</span> 次访问计数 (本设备)</p>
 </footer>
 
 <script>
-// ===== Quotes Data =====
+// ===== Quotes Data (扩充) =====
 const QUOTES = [
   { text: "“The only way to do great work is to love what you do.”", author: "Steve Jobs" },
   { text: "“Stay hungry, stay foolish.”", author: "Whole Earth Catalog" },
@@ -654,67 +744,141 @@ const QUOTES = [
   { text: "“Simplicity is the ultimate sophistication.”", author: "Leonardo da Vinci" },
   { text: "“Make it simple, but significant.”", author: "Don Draper" },
   { text: "“First, solve the problem. Then, write the code.”", author: "John Johnson" },
-  { text: "“Life is short, you need Python/AI.”", author: "Bruce Eckel" }
+  { text: "“Life is short, you need Python/AI.”", author: "Bruce Eckel" },
+  { text: "“Code is like humor. When you have to explain it, it's bad.”", author: "Cory House" },
+  { text: "“Any sufficiently advanced technology is indistinguishable from magic.”", author: "Arthur C. Clarke" },
+  { text: "“The best way to predict the future is to invent it.”", author: "Alan Kay" },
+  { text: "“Debugging is twice as hard as writing the code in the first place.”", author: "Brian Kernighan" },
+  { text: "“Design is not just what it looks like. Design is how it works.”", author: "Steve Jobs" },
+  { text: "“The most dangerous phrase in the language is: we've always done it this way.”", author: "Grace Hopper" },
+  { text: "“人工智能不是要取代人类，而是要增强人类的能力。”", author: "Andrew Ng" },
+  { text: "“写得好的代码本身就是最好的文档。”", author: "Steve McConnell" },
+  { text: "“不要重复发明轮子，但要理解轮子的原理。”", author: "Linux 社区格言" },
+  { text: "“完美不是无可增，而是无可减。”", author: "Antoine de Saint-Exupéry" },
+  { text: "“在互联网上，没人知道你是一条狗。”", author: "Peter Steiner" },
+  { text: "“数据是新的石油。”", author: "Clive Humby" },
+  { text: "“把简单的事情复杂化是平庸，把复杂的事情简单化是才华。”", author: "佚名" },
 ];
 
-// ===== Categories Data =====
+// ===== Categories Data (7 个分类) =====
 const CATEGORIES = [
   { id: 'ai', label: '🤖 AI 前沿' },
   { id: 'dev', label: '💻 编程开发' },
   { id: 'design', label: '🎨 创意设计' },
   { id: 'news', label: '📰 科技资讯' },
   { id: 'tool', label: '🔧 效率工具' },
+  { id: 'learn', label: '📚 学习资源' },
+  { id: 'fun', label: '🎯 有趣发现' },
 ];
 
-// ===== Links Data =====
+// ===== Links Data (80+ 条) =====
 const LINKS = [
-  // AI Tools
+  // ======== AI 前沿 (18) ========
   { cat: 'ai', name: 'ChatGPT', desc: 'OpenAI 旗下的强大语言模型对话助手', url: 'https://chat.openai.com', icon: '🤖' },
   { cat: 'ai', name: 'Claude', desc: 'Anthropic 研发的超强长文本与逻辑推理 AI', url: 'https://claude.ai', icon: '🧠' },
   { cat: 'ai', name: 'DeepSeek', desc: '新一代极具性价比的国产智能推理模型', url: 'https://chat.deepseek.com', icon: '🇨🇳' },
+  { cat: 'ai', name: 'Gemini', desc: 'Google 推出的多模态 AI 助手与推理模型', url: 'https://gemini.google.com', icon: '🌟' },
   { cat: 'ai', name: 'Grok', desc: 'xAI 提供的实时探索与开放式 AI 对话', url: 'https://grok.com', icon: '⚡' },
   { cat: 'ai', name: 'Perplexity', desc: '以精准可靠著称的 AI 伴随式搜索引擎', url: 'https://www.perplexity.ai', icon: '🔎' },
+  { cat: 'ai', name: 'GitHub Copilot', desc: 'GitHub 推出的 AI 代码智能补全助手', url: 'https://github.com/features/copilot', icon: '👨‍💻' },
   { cat: 'ai', name: 'Cursor', desc: '专为 AI 辅助编程打造的下一代代码编辑器', url: 'https://www.cursor.com', icon: '📝' },
+  { cat: 'ai', name: 'Poe', desc: 'Quora 出品的一站式多模型 AI 对话平台', url: 'https://poe.com', icon: '🗣️' },
+  { cat: 'ai', name: 'Replit Agent', desc: 'Replit 推出的 AI 编程代理自动构建应用', url: 'https://replit.com', icon: '🔄' },
+  { cat: 'ai', name: 'Bolt.new', desc: 'AI 驱动的全栈 Web 应用即时生成平台', url: 'https://bolt.new', icon: '⚡' },
+  { cat: 'ai', name: 'v0.dev', desc: 'Vercel 推出的自然语言生成 React/Tailwind 界面工具', url: 'https://v0.dev', icon: '✨' },
   { cat: 'ai', name: 'Hugging Face', desc: '开源机器学习模型与数据集的最佳社区', url: 'https://huggingface.co', icon: '🤗' },
   { cat: 'ai', name: 'Midjourney', desc: '引领艺术潮流的 AI 图像生成与设计平台', url: 'https://www.midjourney.com', icon: '🎨' },
-  { cat: 'ai', name: 'v0.dev', desc: 'Vercel 推出的自然语言生成 React/Tailwind 界面工具', url: 'https://v0.dev', icon: '⚡' },
+  { cat: 'ai', name: 'Suno', desc: 'AI 音乐创作平台，输入歌词即可生成歌曲', url: 'https://suno.com', icon: '🎵' },
+  { cat: 'ai', name: 'Runway', desc: '专业级 AI 视频生成与影视级创意编辑工具', url: 'https://runwayml.com', icon: '🎬' },
+  { cat: 'ai', name: 'ElevenLabs', desc: '业界领先的 AI 语音合成与声音克隆平台', url: 'https://elevenlabs.io', icon: '🔊' },
+  { cat: 'ai', name: 'Kling', desc: '快手推出的 AI 视频生成与创意表达工具', url: 'https://klingai.com', icon: '🎥' },
 
-  // Dev
+  // ======== 编程开发 (16) ========
   { cat: 'dev', name: 'GitHub', desc: '全球最大的开源软件开发协作托管平台', url: 'https://github.com', icon: '🐙' },
   { cat: 'dev', name: 'Vercel', desc: '零配置的前端静态与 Serverless 托管部署平台', url: 'https://vercel.com', icon: '▲' },
   { cat: 'dev', name: 'Cloudflare', desc: '全球 CDN、高防、DNS 及边缘计算服务商', url: 'https://cloudflare.com', icon: '☁️' },
   { cat: 'dev', name: 'Stack Overflow', desc: '全球开发者必备的编程技术问答交流社区', url: 'https://stackoverflow.com', icon: '💬' },
   { cat: 'dev', name: 'MDN Web Docs', desc: '最权威、详尽的 Web 技术核心标准开发文档', url: 'https://developer.mozilla.org', icon: '📚' },
-  { cat: 'dev', name: 'JSON.cn', desc: '极简的在线 JSON 校验、格式化及解析工具', url: 'https://www.json.cn', icon: '🔧' },
+  { cat: 'dev', name: 'CodeSandbox', desc: '云端 IDE，快速创建和分享 Web 应用原型', url: 'https://codesandbox.io', icon: '📦' },
+  { cat: 'dev', name: 'Replit', desc: '支持多人协作的在线 IDE 与部署平台', url: 'https://replit.com', icon: '🔄' },
+  { cat: 'dev', name: 'CodePen', desc: '前端代码在线 playground 与创意展示社区', url: 'https://codepen.io', icon: '🖊️' },
+  { cat: 'dev', name: 'GitLab', desc: '完整的 DevOps 与 Git 仓库管理平台', url: 'https://gitlab.com', icon: '🦊' },
+  { cat: 'dev', name: 'Deno', desc: '安全、现代的 JavaScript/TypeScript 运行时', url: 'https://deno.land', icon: '🦕' },
+  { cat: 'dev', name: 'Bun', desc: '极速全能的 JavaScript 工具链与运行时', url: 'https://bun.sh', icon: '🥟' },
+  { cat: 'dev', name: 'LeetCode', desc: '海量编程面试真题训练与算法刷题平台', url: 'https://leetcode.com', icon: '💡' },
   { cat: 'dev', name: 'Regex101', desc: '强大的正则表达式在线测试、解释与调试器', url: 'https://regex101.com', icon: '🔤' },
   { cat: 'dev', name: 'Npmjs', desc: 'Node.js 的包管理与代码模块共享注册中心', url: 'https://www.npmjs.com', icon: '📦' },
   { cat: 'dev', name: 'DevDocs', desc: '离线快速查询的多编程语言官方文档聚合站', url: 'https://devdocs.io', icon: '📖' },
+  { cat: 'dev', name: 'JSON.cn', desc: '极简的在线 JSON 校验、格式化及解析工具', url: 'https://www.json.cn', icon: '🔧' },
 
-  // Design
+  // ======== 创意设计 (12) ========
   { cat: 'design', name: 'Figma', desc: '极富革命性的协作式 UI/UX 界面设计工具', url: 'https://www.figma.com', icon: '🖌️' },
+  { cat: 'design', name: 'Canva', desc: '零门槛的在线平面设计与可视化创意平台', url: 'https://www.canva.com', icon: '🎯' },
   { cat: 'design', name: 'Coolors', desc: '极速生成完美色调搭配的现代配色方案生成器', url: 'https://coolors.co', icon: '🎨' },
+  { cat: 'design', name: 'Photopea', desc: '功能强大的在线 Photoshop 免费替代工具', url: 'https://www.photopea.com', icon: '🖼️' },
   { cat: 'design', name: 'Dribbble', desc: '全球顶尖视觉设计师的作品展示与创意社区', url: 'https://dribbble.com', icon: '🏀' },
   { cat: 'design', name: 'Unsplash', desc: '可免费商用的全球高精美无版权图库', url: 'https://unsplash.com', icon: '📷' },
+  { cat: 'design', name: 'LottieFiles', desc: '海量轻量级 JSON 动效动画资源与互动工具', url: 'https://lottiefiles.com', icon: '🎞️' },
+  { cat: 'design', name: 'Humaaans', desc: '可自由组合的人物插画组件库', url: 'https://humaaans.com', icon: '🧑‍🎨' },
+  { cat: 'design', name: 'Open Peeps', desc: '温馨手绘风格的人物插画素材库', url: 'https://www.openpeeps.com', icon: '👥' },
   { cat: 'design', name: 'Iconify', desc: '聚合海量开源图标库的统一搜索与引入框架', url: 'https://iconify.design', icon: '✨' },
   { cat: 'design', name: 'Google Fonts', desc: 'Google 提供的免费高品质字体集成分发服务', url: 'https://fonts.google.com', icon: '🔤' },
   { cat: 'design', name: 'WebGradients', desc: '提供 180 种精美 CSS 渐变色背景的代码集合', url: 'https://webgradients.com', icon: '🌈' },
 
-  // News
+  // ======== 科技资讯 (10) ========
   { cat: 'news', name: 'Product Hunt', desc: '每天发现和讨论最新出炉的创意软硬件产品', url: 'https://www.producthunt.com', icon: '🏆' },
   { cat: 'news', name: 'Hacker News', desc: '以极客思维主导的科技创业与计算机新闻论坛', url: 'https://news.ycombinator.com', icon: '📰' },
+  { cat: 'news', name: 'TechCrunch', desc: '全球领先的科技创投与互联网行业新闻媒体', url: 'https://techcrunch.com', icon: '📡' },
+  { cat: 'news', name: 'The Verge', desc: '涵盖科技、艺术与文化的综合性前沿媒体', url: 'https://www.theverge.com', icon: '🌐' },
   { cat: 'news', name: '36氪', desc: '聚焦国内科技创业、商业前沿与创投新风向', url: 'https://36kr.com', icon: '📡' },
   { cat: 'news', name: '少数派', desc: '关注高效率数字生活、硬核软件与利器推荐的媒体', url: 'https://sspai.com', icon: '✍️' },
   { cat: 'news', name: '机器之心', desc: '国内前沿的人工智能与深度学习技术专业媒体', url: 'https://www.jiqizhixin.com', icon: '🧠' },
+  { cat: 'news', name: '爱范儿', desc: '聚焦消费科技与数字生活方式的先锋媒体', url: 'https://www.ifanr.com', icon: '📱' },
+  { cat: 'news', name: '阮一峰的博客', desc: '知名科技博主的每周精华科技资讯分享', url: 'https://www.ruanyifeng.com/blog', icon: '📧' },
+  { cat: 'news', name: '知乎日报', desc: '知乎精选内容聚合，知识分享与深度讨论', url: 'https://daily.zhihu.com', icon: '💭' },
 
-  // Useful Tools
+  // ======== 效率工具 (12) ========
   { cat: 'tool', name: 'Can I Use', desc: '查询前端 CSS/HTML5 属性在各浏览器兼容度', url: 'https://caniuse.com', icon: '✅' },
   { cat: 'tool', name: 'TinyPNG', desc: '智能有损压缩，极大程度减小 PNG/JPG 体积', url: 'https://tinypng.com', icon: '🖼️' },
   { cat: 'tool', name: 'Excalidraw', desc: '极简的手绘手写体风格在线协作思维导图白板', url: 'https://excalidraw.com', icon: '✏️' },
   { cat: 'tool', name: 'Remove.bg', desc: '基于 AI 的优秀全自动一键去除图片背景抠图工具', url: 'https://www.remove.bg', icon: '✂️' },
   { cat: 'tool', name: 'Carbon', desc: '将源码排版并转换为极美精美代码卡片截图的工具', url: 'https://carbon.now.sh', icon: '📸' },
+  { cat: 'tool', name: 'Notion', desc: '全能型笔记、知识库与项目管理协作平台', url: 'https://www.notion.so', icon: '📝' },
+  { cat: 'tool', name: 'Todoist', desc: '简洁强大的跨平台待办事项与任务管理工具', url: 'https://todoist.com', icon: '✅' },
+  { cat: 'tool', name: 'Raycast', desc: 'macOS 上颜值与效率兼具的启动器工具集', url: 'https://www.raycast.com', icon: '🔦' },
+  { cat: 'tool', name: 'Obsidian', desc: '强大的本地优先 Markdown 知识库管理软件', url: 'https://obsidian.md', icon: '💎' },
+  { cat: 'tool', name: '飞书', desc: '字节跳动出品的一站式企业协作与文档平台', url: 'https://www.feishu.cn', icon: '📄' },
+  { cat: 'tool', name: '1Password', desc: '业界领先的跨平台密码管理器与数字保险箱', url: 'https://1password.com', icon: '🔑' },
+  { cat: 'tool', name: 'iCloud', desc: 'Apple 云端同步、存储与设备协作服务', url: 'https://www.icloud.com', icon: '☁️' },
+
+  // ======== 学习资源 (12) ========
+  { cat: 'learn', name: 'freeCodeCamp', desc: '完全免费的交互式编程学习认证平台', url: 'https://www.freecodecamp.org', icon: '🏕️' },
+  { cat: 'learn', name: 'CSS-Tricks', desc: 'CSS 技巧、布局指南与前端最佳实践宝库', url: 'https://css-tricks.com', icon: '🎪' },
+  { cat: 'learn', name: 'Dev.to', desc: '开发者技术博客社区，分享与交流编程经验', url: 'https://dev.to', icon: '💻' },
+  { cat: 'learn', name: 'Roadmap.sh', desc: '可视化开发者成长路线图与学习路径指引', url: 'https://roadmap.sh', icon: '🗺️' },
+  { cat: 'learn', name: '菜鸟教程', desc: '中文入门级的编程技术教程与在线实例运行平台', url: 'https://www.runoob.com', icon: '📖' },
+  { cat: 'learn', name: 'TypeScript 中文手册', desc: 'TypeScript 官方中文文档与类型系统指南', url: 'https://www.typescriptlang.org/zh', icon: '📘' },
+  { cat: 'learn', name: 'Rust 程序设计语言', desc: 'Rust 系统编程语言的权威中文入门教程', url: 'https://kaisery.github.io/trpl-zh-cn/', icon: '🦀' },
+  { cat: 'learn', name: '动手学深度学习', desc: '李沐等人编著的交互式深度学习教科书', url: 'https://d2l.ai', icon: '📗' },
+  { cat: 'learn', name: '极客时间', desc: '极客邦出品的高质量编程与技术职业发展课程', url: 'https://time.geekbang.org', icon: '⏰' },
+  { cat: 'learn', name: '系统设计面试', desc: '系统设计面试的经典解题思路与案例汇总', url: 'https://github.com/donnemartin/system-design-primer', icon: '🏗️' },
+  { cat: 'learn', name: 'Learn Git Branching', desc: '交互式可视化 Git 分支学习与练习工具', url: 'https://learngitbranching.js.org', icon: '🌿' },
+  { cat: 'learn', name: 'OverAPI', desc: '所有编程语言速查表的快速索引聚合网站', url: 'https://overapi.com', icon: '📋' },
+
+  // ======== 有趣发现 (10) ========
+  { cat: 'fun', name: 'Awwwards', desc: '全球最佳网页设计与开发奖获奖作品集', url: 'https://www.awwwards.com', icon: '🏆' },
+  { cat: 'fun', name: 'SiteInspire', desc: '精选极简主义风格的高品质网站设计展示', url: 'https://www.siteinspire.com', icon: '✨' },
+  { cat: 'fun', name: 'Brutalist Websites', desc: '粗野主义网页设计风格的前沿灵感集合', url: 'https://brutalistwebsites.com', icon: '🏛️' },
+  { cat: 'fun', name: 'CodeMyUI', desc: '精选 CSS/JS 动效卡片与 UI 组件创意代码集', url: 'https://codemyui.com', icon: '🎨' },
+  { cat: 'fun', name: 'Uiverse.io', desc: '海量开源社区贡献的 UI 组件与 CSS 元素库', url: 'https://uiverse.io', icon: '🧩' },
+  { cat: 'fun', name: 'Neumorphism.io', desc: '新拟态风格的在线软 UI 阴影生成器工具', url: 'https://neumorphism.io', icon: '🔮' },
+  { cat: 'fun', name: 'CSS Battle', desc: '前端 CSS 代码高尔夫竞技挑战与对战游戏', url: 'https://cssbattle.dev', icon: '⚔️' },
+  { cat: 'fun', name: 'Codrops', desc: '创意前端动效、交互实验与编程教程集散地', url: 'https://tympanus.net/codrops/', icon: '💡' },
+  { cat: 'fun', name: 'Page Collective', desc: '精心筛选的原创网页设计灵感与优秀案例展示', url: 'https://pagecollective.com', icon: '📂' },
+  { cat: 'fun', name: 'Land-book', desc: '精选落地页与产品着陆页设计灵感集合', url: 'https://land-book.com', icon: '📄' },
 ];
 
-// ===== Tools Data =====
+// ===== Tools Data (12 个) =====
 const TOOLS = [
   { name: '二维码生成', desc: '输入任意文字或网址，一键获取高清二维码', icon: '📱', action: 'qrcode' },
   { name: 'Base64 转换', desc: '实现文本的高效 Base64 编码与解码转换', icon: '🔐', action: 'base64' },
@@ -722,12 +886,72 @@ const TOOLS = [
   { name: 'JSON 格式化', desc: '整理、排版、压缩与美化 JSON 结构化数据', icon: '📂', action: 'json' },
   { name: '时间戳转换', desc: '本地时间与 Unix 时间戳（秒/毫秒）互转', icon: '⏰', action: 'timestamp' },
   { name: '字符计数器', desc: '统计文本内的字数、行数、中英文字符等数据', icon: '🔢', action: 'counter' },
+  { name: 'Markdown 预览', desc: '实时渲染 Markdown 文本为格式化预览效果', icon: '📝', action: 'markdown' },
+  { name: '颜色选择器', desc: '可视化取色与配色调色板生成工具', icon: '🎨', action: 'colorpicker' },
+  { name: 'UUID 生成器', desc: '一键生成 UUID v4 通用唯一标识符', icon: '🆔', action: 'uuid' },
+  { name: 'URL 编解码', desc: '对网址进行 URI 编码、解码或完整解析', icon: '🔗', action: 'urlcodec' },
+  { name: '大小写转换', desc: '文本的各种大小写格式快速互转', icon: '🔤', action: 'caseconvert' },
+  { name: 'Lorem Ipsum', desc: '生成占位用的随机 Lorem Ipsum 假文段落', icon: '📄', action: 'lipsum' },
+];
+
+// ===== Projects Data =====
+const PROJECTS = [
+  {
+    name: 'E1nstein 个人门户',
+    desc: '基于玻璃拟态设计的个人综合门户网站，聚合精选导航、实用在线工具与创意灵感。纯前端实现，支持深色模式。',
+    tags: ['HTML/CSS', 'JavaScript', 'Glassmorphism', 'Vercel'],
+    icon: '🏠',
+    link: 'https://e1nstein.com'
+  },
+  {
+    name: '导航站 nav-site',
+    desc: '极客风格的个人导航标签页，支持多种分类筛选、搜索与在线小工具。一键部署到 Vercel。',
+    tags: ['前端', '单页应用', '响应式'],
+    icon: '🧭',
+    link: 'https://nav-site-ten.vercel.app'
+  },
+  {
+    name: '更多项目开发中',
+    desc: '正在构思和建设更多有趣的项目，包括 AI 工具集成、自动化工作流等，敬请期待。',
+    tags: ['计划中', 'AI', '自动化'],
+    icon: '🚧',
+    link: 'https://github.com/girlsleague'
+  },
+];
+
+// ===== Skills Data =====
+const SKILLS = [
+  { name: 'HTML/CSS', icon: '🌐' },
+  { name: 'JavaScript', icon: '📜' },
+  { name: 'TypeScript', icon: '📘' },
+  { name: 'React', icon: '⚛️' },
+  { name: 'Vue.js', icon: '💚' },
+  { name: 'Node.js', icon: '🟢' },
+  { name: 'Python', icon: '🐍' },
+  { name: 'Git', icon: '🔀' },
+  { name: 'Docker', icon: '🐳' },
+  { name: 'Tailwind CSS', icon: '🎨' },
+  { name: 'AI/ML Prompt', icon: '🤖' },
+  { name: 'Figma', icon: '🖌️' },
+];
+
+// ===== Reading Data =====
+const READING = [
+  { title: '深入理解 TypeScript', desc: 'TypeScript 类型系统进阶', icon: '📘', status: '阅读中' },
+  { title: '系统设计面试', desc: '大规模分布式系统设计', icon: '🏗️', status: '阅读中' },
+  { title: 'CSS 权威指南', desc: 'CSS 核心原理与实战', icon: '🎨', status: '已读完' },
+  { title: '黑客与画家', desc: 'Paul Graham 的硅谷创业随笔', icon: '📖', status: '在读' },
+  { title: 'AI 新生', desc: '人工智能与人类的未来', icon: '🧠', status: '计划读' },
+  { title: '程序员修炼之道', desc: '软件开发者的成长之路', icon: '📗', status: '已读完' },
 ];
 
 // ===== Elements =====
 const catFilter = document.getElementById('catFilter');
 const linkGrid = document.getElementById('linkGrid');
 const toolsGrid = document.getElementById('toolsGrid');
+const projectGrid = document.getElementById('projectGrid');
+const skillsGrid = document.getElementById('skillsGrid');
+const readingList = document.getElementById('readingList');
 const searchInput = document.getElementById('searchInput');
 const searchClear = document.getElementById('searchClear');
 const emptyState = document.getElementById('emptyState');
@@ -741,31 +965,38 @@ let activeCat = 'all';
 // ===== Live Clock & Quotes Widget =====
 function updateClock() {
   const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-  timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
-
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const date = now.getDate();
+  const h = String(now.getHours()).padStart(2, '0');
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
+  timeDisplay.textContent = `${h}:${m}:${s}`;
   const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-  const day = weekDays[now.getDay()];
-  dateDisplay.textContent = `${year}年${month}月${date}日 ${day}`;
+  dateDisplay.textContent = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${weekDays[now.getDay()]}`;
 }
 
 function updateQuote() {
-  const index = Math.floor(Math.random() * QUOTES.length);
-  quoteText.textContent = QUOTES[index].text;
-  quoteAuthor.textContent = `— ${QUOTES[index].author}`;
+  const i = Math.floor(Math.random() * QUOTES.length);
+  quoteText.textContent = QUOTES[i].text;
+  quoteAuthor.textContent = `— ${QUOTES[i].author}`;
 }
 
-// Update time every second
 setInterval(updateClock, 1000);
 updateClock();
-
-// Set initial random quote
 updateQuote();
+
+// ===== Stats =====
+document.getElementById('statLinks').textContent = LINKS.length;
+document.getElementById('statTools').textContent = TOOLS.length;
+document.getElementById('statProjects').textContent = PROJECTS.length;
+document.getElementById('statSkills').textContent = SKILLS.length;
+
+// ===== Visit Counter (localStorage) =====
+(function() {
+  const key = 'e1nstein_visits';
+  let count = parseInt(localStorage.getItem(key)) || 0;
+  count++;
+  localStorage.setItem(key, count);
+  document.getElementById('visitYear').textContent = count;
+})();
 
 // ===== Build Category Filter =====
 function buildCategoryFilter() {
@@ -830,15 +1061,155 @@ function renderTools() {
 
   toolsGrid.querySelectorAll('.tool-card').forEach(card => {
     card.addEventListener('click', () => {
-      const action = card.dataset.action;
-      openTool(action, card.querySelector('.name').textContent);
+      openTool(card.dataset.action, card.querySelector('.name').textContent);
     });
   });
 }
 
-// ===== Tool Modals (Full Interactive Implementation) =====
+// ===== Render Projects =====
+function renderProjects() {
+  projectGrid.innerHTML = PROJECTS.map(p => `
+    <div class="project-card">
+      <div class="project-icon">${p.icon}</div>
+      <div class="project-name">${p.name}</div>
+      <div class="project-desc">${p.desc}</div>
+      <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+      <a href="${p.link}" target="_blank" rel="noopener noreferrer" class="project-link">查看详情 →</a>
+    </div>
+  `).join('');
+}
+
+// ===== Render Skills =====
+function renderSkills() {
+  skillsGrid.innerHTML = SKILLS.map(s => `
+    <span class="skill-tag">${s.icon} ${s.name}</span>
+  `).join('');
+}
+
+// ===== Render Reading =====
+function renderReading() {
+  readingList.innerHTML = READING.map(r => `
+    <div class="reading-item">
+      <span class="reading-icon">${r.icon}</span>
+      <div class="reading-body">
+        <div class="reading-title">${r.title}</div>
+        <div class="reading-desc">${r.desc}</div>
+        <span class="reading-status">${r.status}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== Weather Widget =====
+async function fetchWeather() {
+  const el = document.getElementById('weatherWidget');
+  try {
+    const locRes = await fetch('https://ip-api.com/json/?fields=city,countryCode,lat,lon');
+    if (!locRes.ok) throw new Error('location failed');
+    const loc = await locRes.json();
+    const city = loc.city || 'Unknown';
+    const lat = loc.lat;
+    const lon = loc.lon;
+
+    const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=auto`);
+    if (!weatherRes.ok) throw new Error('weather failed');
+    const weather = await weatherRes.json();
+    const w = weather.current_weather;
+    const temp = Math.round(w.temperature);
+    const code = w.weathercode;
+    const wmoCodes = {
+      0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️',
+      51: '🌦️', 53: '🌦️', 55: '🌦️', 61: '🌧️', 63: '🌧️', 65: '🌧️',
+      71: '🌨️', 73: '🌨️', 75: '🌨️', 80: '🌦️', 81: '🌧️', 82: '🌧️',
+      95: '⛈️', 96: '⛈️', 99: '⛈️'
+    };
+    const icon = wmoCodes[code] || '🌤️';
+
+    el.innerHTML = `
+      <div class="weather-info">
+        <span class="weather-icon">${icon}</span>
+        <div>
+          <div class="weather-temp">${temp}°C</div>
+          <div class="weather-city">${city}</div>
+        </div>
+      </div>
+    `;
+  } catch(e) {
+    el.innerHTML = `<div class="weather-loading">🌤️ 天气数据暂不可用</div>`;
+  }
+}
+fetchWeather();
+
+// ===== Pomodoro Timer =====
+(function() {
+  const timeEl = document.getElementById('pomodoroTime');
+  const labelEl = document.getElementById('pomodoroLabel');
+  const startBtn = document.getElementById('pomodoroStart');
+  const resetBtn = document.getElementById('pomodoroReset');
+
+  let timer = null;
+  let seconds = 25 * 60;
+  let running = false;
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+  }
+
+  function updateDisplay() {
+    timeEl.textContent = formatTime(seconds);
+  }
+
+  function tick() {
+    if (seconds <= 0) {
+      clearInterval(timer);
+      timer = null;
+      running = false;
+      startBtn.textContent = '▶ 开始';
+      labelEl.textContent = '⏰ 时间到！休息一下吧';
+      return;
+    }
+    seconds--;
+    updateDisplay();
+    if (seconds <= 5) {
+      timeEl.style.color = '#ef4444';
+    }
+  }
+
+  startBtn.addEventListener('click', () => {
+    if (running) {
+      clearInterval(timer);
+      timer = null;
+      running = false;
+      startBtn.textContent = '▶ 继续';
+      labelEl.textContent = '⏸️ 已暂停';
+    } else {
+      if (seconds <= 0) {
+        seconds = 25 * 60;
+        updateDisplay();
+        timeEl.style.color = '';
+      }
+      running = true;
+      startBtn.textContent = '⏸ 暂停';
+      labelEl.textContent = '🎯 专注中...';
+      timer = setInterval(tick, 1000);
+    }
+  });
+
+  resetBtn.addEventListener('click', () => {
+    if (timer) { clearInterval(timer); timer = null; }
+    running = false;
+    seconds = 25 * 60;
+    updateDisplay();
+    timeEl.style.color = '';
+    startBtn.textContent = '▶ 开始';
+    labelEl.textContent = '专注 · 待开始';
+  });
+})();
+
+// ===== Tool Modals (with new tools) =====
 function openTool(action, name) {
-  // Create modal overlay
   const overlay = document.createElement('div');
   overlay.style.cssText = `
     position:fixed;inset:0;z-index:999;
@@ -849,7 +1220,6 @@ function openTool(action, name) {
   `;
   overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
 
-  // CSS Animations definition
   const styleSheet = document.createElement("style");
   styleSheet.textContent = `
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -876,10 +1246,10 @@ function openTool(action, name) {
   document.body.appendChild(overlay);
 
   modal.querySelector('.modal-close').addEventListener('click', () => overlay.remove());
-
   const content = modal.querySelector('#toolContent');
 
   switch(action) {
+    // === Existing tools (unchanged) ===
     case 'qrcode':
       content.innerHTML = `
         <input id="qrInput" class="modal-input" placeholder="输入你想生成二维码的文字或链接…">
@@ -920,18 +1290,12 @@ function openTool(action, name) {
         const out = document.getElementById('b64Output');
         if (!enc || !dec || !inp || !out) return;
         enc.addEventListener('click', () => {
-          try {
-            out.value = btoa(unescape(encodeURIComponent(inp.value)));
-          } catch(e) {
-            out.value = '编码失败：文本含有不支持编码的字符';
-          }
+          try { out.value = btoa(unescape(encodeURIComponent(inp.value))); }
+          catch(e) { out.value = '编码失败：文本含有不支持编码的字符'; }
         });
         dec.addEventListener('click', () => {
-          try {
-            out.value = decodeURIComponent(escape(atob(inp.value)));
-          } catch(e) {
-            out.value = '解码失败：请确保输入的文本为有效的 Base64 格式';
-          }
+          try { out.value = decodeURIComponent(escape(atob(inp.value))); }
+          catch(e) { out.value = '解码失败：请确保输入的文本为有效的 Base64 格式'; }
         });
       }, 50);
       break;
@@ -943,18 +1307,10 @@ function openTool(action, name) {
           <input id="pwdLength" type="range" min="6" max="32" value="16" style="width:100%;accent-color:var(--accent)">
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
-          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--text2);cursor:pointer">
-            <input id="pwdUpper" type="checkbox" checked style="accent-color:var(--accent)"> 大写字母 (A-Z)
-          </label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--text2);cursor:pointer">
-            <input id="pwdLower" type="checkbox" checked style="accent-color:var(--accent)"> 小写字母 (a-z)
-          </label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--text2);cursor:pointer">
-            <input id="pwdNum" type="checkbox" checked style="accent-color:var(--accent)"> 数字 (0-9)
-          </label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--text2);cursor:pointer">
-            <input id="pwdSymbol" type="checkbox" checked style="accent-color:var(--accent)"> 特殊符号 (!@#...)
-          </label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--text2);cursor:pointer"><input id="pwdUpper" type="checkbox" checked style="accent-color:var(--accent)"> 大写字母</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--text2);cursor:pointer"><input id="pwdLower" type="checkbox" checked style="accent-color:var(--accent)"> 小写字母</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--text2);cursor:pointer"><input id="pwdNum" type="checkbox" checked style="accent-color:var(--accent)"> 数字</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--text2);cursor:pointer"><input id="pwdSymbol" type="checkbox" checked style="accent-color:var(--accent)"> 特殊符号</label>
         </div>
         <input id="pwdOutput" class="modal-input" readonly placeholder="点击生成密码" style="text-align:center;font-family:var(--mono);font-size:1.05rem;letter-spacing:1px">
         <div style="display:flex;gap:10px">
@@ -968,32 +1324,25 @@ function openTool(action, name) {
         const out = document.getElementById('pwdOutput');
         const btn = document.getElementById('pwdBtn');
         const copy = document.getElementById('pwdCopy');
-
         slider.addEventListener('input', () => { lenVal.textContent = slider.value; });
-
         function generate() {
           const length = parseInt(slider.value);
           const hasUpper = document.getElementById('pwdUpper').checked;
           const hasLower = document.getElementById('pwdLower').checked;
           const hasNum = document.getElementById('pwdNum').checked;
           const hasSym = document.getElementById('pwdSymbol').checked;
-
           let chars = '';
           if (hasUpper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
           if (hasLower) chars += 'abcdefghijklmnopqrstuvwxyz';
           if (hasNum) chars += '0123456789';
           if (hasSym) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
-
           if (!chars) { out.value = '请至少勾选一种字符类型'; return; }
-
           let pwd = '';
           for (let i = 0; i < length; i++) {
-            const randomByte = window.crypto.getRandomValues(new Uint32Array(1))[0];
-            pwd += chars[randomByte % chars.length];
+            pwd += chars[window.crypto.getRandomValues(new Uint32Array(1))[0] % chars.length];
           }
           out.value = pwd;
         }
-
         btn.addEventListener('click', generate);
         copy.addEventListener('click', async () => {
           if (!out.value || out.value.startsWith('请至少')) return;
@@ -1003,8 +1352,7 @@ function openTool(action, name) {
             setTimeout(() => { copy.textContent = '复制'; }, 1000);
           } catch(e) {}
         });
-
-        generate(); // initial generation
+        generate();
       }, 50);
       break;
 
@@ -1025,38 +1373,23 @@ function openTool(action, name) {
         const copy = document.getElementById('jsonCopy');
         const err = document.getElementById('jsonError');
         if (!inp || !fmt || !mini || !copy || !err) return;
-
         fmt.addEventListener('click', () => {
           err.textContent = '';
           const raw = inp.value.trim();
           if (!raw) return;
-          try {
-            const parsed = JSON.parse(raw);
-            inp.value = JSON.stringify(parsed, null, 2);
-          } catch(e) {
-            err.textContent = 'JSON 校验失败: ' + e.message;
-          }
+          try { inp.value = JSON.stringify(JSON.parse(raw), null, 2); }
+          catch(e) { err.textContent = 'JSON 校验失败: ' + e.message; }
         });
-
         mini.addEventListener('click', () => {
           err.textContent = '';
           const raw = inp.value.trim();
           if (!raw) return;
-          try {
-            const parsed = JSON.parse(raw);
-            inp.value = JSON.stringify(parsed);
-          } catch(e) {
-            err.textContent = 'JSON 校验失败: ' + e.message;
-          }
+          try { inp.value = JSON.stringify(JSON.parse(raw)); }
+          catch(e) { err.textContent = 'JSON 校验失败: ' + e.message; }
         });
-
         copy.addEventListener('click', async () => {
           if (!inp.value) return;
-          try {
-            await navigator.clipboard.writeText(inp.value);
-            copy.textContent = '✓ 已复制';
-            setTimeout(() => { copy.textContent = '复制结果'; }, 1000);
-          } catch(e) {}
+          try { await navigator.clipboard.writeText(inp.value); copy.textContent = '✓ 已复制'; setTimeout(() => { copy.textContent = '复制结果'; }, 1000); } catch(e) {}
         });
       }, 50);
       break;
@@ -1087,10 +1420,7 @@ function openTool(action, name) {
       `;
       setTimeout(() => {
         const n = document.getElementById('nowTs');
-        if (n) {
-          n.textContent = Math.floor(Date.now() / 1000);
-          setInterval(() => { n.textContent = Math.floor(Date.now() / 1000); }, 1000);
-        }
+        if (n) { n.textContent = Math.floor(Date.now() / 1000); setInterval(() => { n.textContent = Math.floor(Date.now() / 1000); }, 1000); }
         const tsBtn = document.getElementById('tsToDate');
         const tsInp = document.getElementById('tsInput');
         const r1 = document.getElementById('tsResult1');
@@ -1099,23 +1429,16 @@ function openTool(action, name) {
           tsBtn.addEventListener('click', () => {
             let v = parseInt(tsInp.value);
             if (isNaN(v)) { r1.textContent = '请输入有效数字'; return; }
-            // Check if milliseconds
-            if (v.toString().length > 11) {
-              r1.textContent = new Date(v).toLocaleString('zh-CN');
-            } else {
-              r1.textContent = new Date(v * 1000).toLocaleString('zh-CN');
-            }
+            r1.textContent = new Date(v.toString().length > 11 ? v : v * 1000).toLocaleString('zh-CN');
           });
         }
         const dtBtn = document.getElementById('dateToTs');
         const dtInp = document.getElementById('dateInput');
         const r2 = document.getElementById('tsResult2');
         if (dtBtn && dtInp && r2) {
-          // prefill now
           const localTime = new Date();
           localTime.setMinutes(localTime.getMinutes() - localTime.getTimezoneOffset());
           dtInp.value = localTime.toISOString().slice(0, 16);
-
           dtBtn.addEventListener('click', () => {
             if (!dtInp.value) { r2.textContent = '请选择日期与时间'; return; }
             const ms = new Date(dtInp.value).getTime();
@@ -1151,10 +1474,290 @@ function openTool(action, name) {
         });
       }, 50);
       break;
+
+    // === NEW TOOLS ===
+
+    case 'markdown':
+      content.innerHTML = `
+        <div style="display:flex;gap:12px;margin-bottom:10px">
+          <textarea id="mdInput" class="modal-textarea" placeholder="在此输入 Markdown 内容…" style="flex:1;min-height:200px;font-family:var(--mono);font-size:0.8rem"></textarea>
+          <div id="mdOutput" style="flex:1;min-height:200px;padding:12px;background:var(--surface);border-radius:8px;border:1px solid var(--border);font-size:0.85rem;line-height:1.6;overflow-y:auto;color:var(--text)"></div>
+        </div>
+        <div style="display:flex;gap:8px;font-size:0.75rem;color:var(--text-muted);flex-wrap:wrap">
+          <span>支持: **加粗** *斜体* ~~删除线~~</span>
+          <span>\`代码\`</span>
+          <span># 标题</span>
+          <span>> 引用</span>
+          <span>- 列表</span>
+          <span>[链接](url)</span>
+        </div>
+      `;
+      setTimeout(() => {
+        const inp = document.getElementById('mdInput');
+        const out = document.getElementById('mdOutput');
+        if (!inp || !out) return;
+        function render() {
+          let t = inp.value;
+          let html = t
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/^### (.+)$/gm, '<h3 style="font-size:1.1rem;font-weight:700;margin:12px 0 6px">$1</h3>')
+            .replace(/^## (.+)$/gm, '<h2 style="font-size:1.25rem;font-weight:700;margin:14px 0 8px">$1</h2>')
+            .replace(/^# (.+)$/gm, '<h1 style="font-size:1.4rem;font-weight:700;margin:16px 0 10px">$1</h1>')
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            .replace(/~~(.+?)~~/g, '<del>$1</del>')
+            .replace(/`(.+?)`/g, '<code style="background:var(--accent-light);padding:2px 6px;border-radius:4px;font-size:0.8em;color:var(--accent)">$1</code>')
+            .replace(/^> (.+)$/gm, '<blockquote style="border-left:3px solid var(--accent);padding:6px 12px;margin:8px 0;color:var(--text2);background:var(--accent-light);border-radius:4px">$1</blockquote>')
+            .replace(/^- (.+)$/gm, '<li style="margin-left:16px;list-style-type:disc">$1</li>')
+            .replace(/^\d+\. (.+)$/gm, '<li style="margin-left:16px;list-style-type:decimal">$1</li>')
+            .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank">$1</a>')
+            .replace(/\n{2,}/g, '</p><p style="margin:8px 0">')
+            .replace(/\n/g, '<br>');
+          out.innerHTML = `<p style="margin:0">${html}</p>`;
+        }
+        inp.addEventListener('input', render);
+        render();
+      }, 50);
+      break;
+
+    case 'colorpicker':
+      content.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+          <div style="text-align:center">
+            <label style="display:block;font-size:.8rem;color:var(--text-muted);margin-bottom:8px">选择颜色</label>
+            <input id="cpColor" type="color" value="#6366f1" style="width:80px;height:80px;border:2px solid var(--border);border-radius:12px;cursor:pointer;background:none;padding:4px">
+          </div>
+          <div style="text-align:center">
+            <label style="display:block;font-size:.8rem;color:var(--text-muted);margin-bottom:8px">颜色预览</label>
+            <div id="cpPreview" style="width:80px;height:80px;border-radius:12px;background:#6366f1;margin:0 auto;border:2px solid var(--border);transition:background .2s"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <input id="cpHex" class="modal-input" value="#6366f1" readonly style="text-align:center;font-family:var(--mono);margin-bottom:0">
+          <input id="cpRgb" class="modal-input" value="rgb(99,102,241)" readonly style="text-align:center;font-family:var(--mono);margin-bottom:0">
+        </div>
+        <div style="margin-top:14px">
+          <label style="display:block;font-size:.8rem;color:var(--text-muted);margin-bottom:6px">配色方案</label>
+          <div id="cpPalette" style="display:flex;gap:8px;flex-wrap:wrap">
+            ${['#6366f1','#ec4899','#14b8a6','#f59e0b','#ef4444','#8b5cf6','#10b981','#3b82f6','#f97316','#84cc16'].map(c =>
+              `<div style="width:36px;height:36px;border-radius:8px;background:${c};cursor:pointer;border:2px solid transparent;transition:all .15s" data-color="${c}"></div>`
+            ).join('')}
+          </div>
+        </div>
+      `;
+      setTimeout(() => {
+        const picker = document.getElementById('cpColor');
+        const preview = document.getElementById('cpPreview');
+        const hex = document.getElementById('cpHex');
+        const rgb = document.getElementById('cpRgb');
+        if (!picker || !preview || !hex || !rgb) return;
+        function hexToRgb(h) {
+          const r = parseInt(h.slice(1,3), 16);
+          const g = parseInt(h.slice(3,5), 16);
+          const b = parseInt(h.slice(5,7), 16);
+          return `rgb(${r},${g},${b})`;
+        }
+        picker.addEventListener('input', () => {
+          preview.style.background = picker.value;
+          hex.value = picker.value;
+          rgb.value = hexToRgb(picker.value);
+        });
+        document.querySelectorAll('#cpPalette > div').forEach(el => {
+          el.addEventListener('click', () => {
+            const c = el.dataset.color;
+            picker.value = c;
+            preview.style.background = c;
+            hex.value = c;
+            rgb.value = hexToRgb(c);
+          });
+        });
+      }, 50);
+      break;
+
+    case 'uuid':
+      content.innerHTML = `
+        <div style="text-align:center;padding:20px 0">
+          <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px">UUID v4 通用唯一标识符</div>
+          <div id="uuidOutput" style="font-family:var(--mono);font-size:1.1rem;padding:16px;background:var(--surface);border-radius:10px;border:1px solid var(--border);word-break:break-all;margin-bottom:16px;color:var(--text);font-weight:600"></div>
+          <div style="display:flex;gap:10px;justify-content:center">
+            <button id="uuidBtn" class="modal-btn">生成新 UUID</button>
+            <button id="uuidCopy" class="modal-btn-secondary">复制</button>
+          </div>
+          <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <button id="uuidUpper" class="modal-btn-secondary" style="font-size:.78rem">大写</button>
+            <button id="uuidNoDash" class="modal-btn-secondary" style="font-size:.78rem">去掉连字符</button>
+            <button id="uuidBrace" class="modal-btn-secondary" style="font-size:.78rem">加花括号</button>
+          </div>
+        </div>
+      `;
+      setTimeout(() => {
+        const out = document.getElementById('uuidOutput');
+        const btn = document.getElementById('uuidBtn');
+        const copy = document.getElementById('uuidCopy');
+        const upper = document.getElementById('uuidUpper');
+        const noDash = document.getElementById('uuidNoDash');
+        const brace = document.getElementById('uuidBrace');
+        if (!out || !btn) return;
+        let current = '';
+        function genUUID() {
+          return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+            const r = window.crypto.getRandomValues(new Uint8Array(1))[0] % 16 | 0;
+            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+          });
+        }
+        function display() {
+          out.textContent = current;
+        }
+        btn.addEventListener('click', () => {
+          current = genUUID();
+          display();
+        });
+        copy.addEventListener('click', async () => {
+          if (!current) return;
+          try { await navigator.clipboard.writeText(current); copy.textContent = '✓ 已复制'; setTimeout(() => { copy.textContent = '复制'; }, 1000); } catch(e) {}
+        });
+        upper.addEventListener('click', () => { current = current.toUpperCase(); display(); });
+        noDash.addEventListener('click', () => { current = current.replace(/-/g, ''); display(); });
+        brace.addEventListener('click', () => { current = '{' + current + '}'; display(); });
+        btn.click();
+      }, 50);
+      break;
+
+    case 'urlcodec':
+      content.innerHTML = `
+        <textarea id="urlInput" class="modal-textarea" placeholder="输入需要编码或解码的 URL / 字符串…" style="min-height:100px;margin-bottom:12px"></textarea>
+        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+          <button id="urlEncode" class="modal-btn" style="flex:1">URI 编码 (Encode)</button>
+          <button id="urlDecode" class="modal-btn-secondary" style="flex:1">URI 解码 (Decode)</button>
+          <button id="urlClear" class="modal-btn-secondary" style="padding:10px 12px">清空</button>
+        </div>
+        <textarea id="urlOutput" class="modal-textarea" readonly placeholder="转换结果…" style="min-height:80px;font-family:var(--mono);font-size:0.8rem"></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button id="urlCopy" class="modal-btn-secondary">复制结果</button>
+        </div>
+      `;
+      setTimeout(() => {
+        const inp = document.getElementById('urlInput');
+        const out = document.getElementById('urlOutput');
+        const enc = document.getElementById('urlEncode');
+        const dec = document.getElementById('urlDecode');
+        const clear = document.getElementById('urlClear');
+        const copy = document.getElementById('urlCopy');
+        if (!inp || !out || !enc || !dec || !clear || !copy) return;
+        enc.addEventListener('click', () => { try { out.value = encodeURIComponent(inp.value); } catch(e) { out.value = '编码失败'; } });
+        dec.addEventListener('click', () => { try { out.value = decodeURIComponent(inp.value); } catch(e) { out.value = '解码失败：非法 URI 编码'; } });
+        clear.addEventListener('click', () => { inp.value = ''; out.value = ''; inp.focus(); });
+        copy.addEventListener('click', async () => {
+          if (!out.value) return;
+          try { await navigator.clipboard.writeText(out.value); copy.textContent = '✓ 已复制'; setTimeout(() => { copy.textContent = '复制结果'; }, 1000); } catch(e) {}
+        });
+      }, 50);
+      break;
+
+    case 'caseconvert':
+      content.innerHTML = `
+        <textarea id="caseInput" class="modal-textarea" placeholder="在此输入需要转换大小写的文本…" style="min-height:120px;margin-bottom:12px"></textarea>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+          <button id="caseUpper" class="modal-btn" style="font-size:.82rem">⬆ 全大写</button>
+          <button id="caseLower" class="modal-btn-secondary" style="font-size:.82rem">⬇ 全小写</button>
+          <button id="caseTitle" class="modal-btn-secondary" style="font-size:.82rem">📝 首字母大写</button>
+          <button id="caseCamel" class="modal-btn-secondary" style="font-size:.82rem">🐫 驼峰式</button>
+          <button id="caseSnake" class="modal-btn-secondary" style="font-size:.82rem">🐍 蛇形式</button>
+          <button id="caseKebab" class="modal-btn-secondary" style="font-size:.82rem">🥟 烤肉串式</button>
+        </div>
+        <input id="caseOutput" class="modal-input" readonly placeholder="转换结果…" style="text-align:center;font-family:var(--mono);font-size:.9rem;margin-bottom:0">
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button id="caseCopy" class="modal-btn-secondary">复制结果</button>
+        </div>
+      `;
+      setTimeout(() => {
+        const inp = document.getElementById('caseInput');
+        const out = document.getElementById('caseOutput');
+        const upper = document.getElementById('caseUpper');
+        const lower = document.getElementById('caseLower');
+        const title = document.getElementById('caseTitle');
+        const camel = document.getElementById('caseCamel');
+        const snake = document.getElementById('caseSnake');
+        const kebab = document.getElementById('caseKebab');
+        const copy = document.getElementById('caseCopy');
+        if (!inp || !out) return;
+        upper.addEventListener('click', () => { out.value = inp.value.toUpperCase(); });
+        lower.addEventListener('click', () => { out.value = inp.value.toLowerCase(); });
+        title.addEventListener('click', () => {
+          out.value = inp.value.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+        });
+        camel.addEventListener('click', () => {
+          out.value = inp.value.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase());
+        });
+        snake.addEventListener('click', () => {
+          out.value = inp.value.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '').toLowerCase();
+        });
+        kebab.addEventListener('click', () => {
+          out.value = inp.value.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
+        });
+        copy.addEventListener('click', async () => {
+          if (!out.value) return;
+          try { await navigator.clipboard.writeText(out.value); copy.textContent = '✓ 已复制'; setTimeout(() => { copy.textContent = '复制结果'; }, 1000); } catch(e) {}
+        });
+      }, 50);
+      break;
+
+    case 'lipsum':
+      content.innerHTML = `
+        <div style="margin-bottom:14px">
+          <label style="display:block;font-size:.8rem;color:var(--text-muted);margin-bottom:6px">生成段落数</label>
+          <div style="display:flex;gap:8px">
+            <input id="lipsumCount" type="number" value="3" min="1" max="20" class="modal-input" style="margin-bottom:0;flex:1;text-align:center">
+            <button id="lipsumBtn" class="modal-btn">生成</button>
+          </div>
+        </div>
+        <textarea id="lipsumOutput" class="modal-textarea" readonly placeholder="生成的 Lorem Ipsum 文本…" style="min-height:200px;font-size:.82rem;line-height:1.6"></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button id="lipsumCopy" class="modal-btn-secondary">复制全文</button>
+        </div>
+      `;
+      setTimeout(() => {
+        const btn = document.getElementById('lipsumBtn');
+        const count = document.getElementById('lipsumCount');
+        const out = document.getElementById('lipsumOutput');
+        const copy = document.getElementById('lipsumCopy');
+        if (!btn || !count || !out) return;
+
+        const WORDS = ['lorem','ipsum','dolor','sit','amet','consectetur','adipiscing','elit','sed','do','eiusmod','tempor','incididunt','ut','labore','et','dolore','magna','aliqua','ut','enim','ad','minim','veniam','quis','nostrud','exercitation','ullamco','laboris','nisi','ut','aliquip','ex','ea','commodo','consequat','duis','aute','irure','dolor','in','reprehenderit','in','voluptate','velit','esse','cillum','dolore','eu','fugiat','nulla','pariatur','excepteur','sint','occaecat','cupidatat','non','proident','sunt','in','culpa','qui','officia','deserunt','mollit','anim','id','est','laborum'];
+
+        function generatePara() {
+          const len = 20 + Math.floor(Math.random() * 30);
+          let words = [];
+          for (let i = 0; i < len; i++) {
+            words.push(WORDS[Math.floor(Math.random() * WORDS.length)]);
+          }
+          return words.join(' ') + '.';
+        }
+
+        btn.addEventListener('click', () => {
+          const n = Math.min(Math.max(parseInt(count.value) || 3, 1), 20);
+          const paras = [];
+          for (let i = 0; i < n; i++) {
+            paras.push(generatePara());
+          }
+          out.value = paras.join('\n\n');
+        });
+
+        copy.addEventListener('click', async () => {
+          if (!out.value) return;
+          try { await navigator.clipboard.writeText(out.value); copy.textContent = '✓ 已复制'; setTimeout(() => { copy.textContent = '复制全文'; }, 1000); } catch(e) {}
+        });
+
+        btn.click();
+      }, 50);
+      break;
+
+    default:
+      content.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:20px">工具加载中…</p>';
   }
 }
 
-// ===== Search Implementation =====
+// ===== Search =====
 searchInput.addEventListener('input', () => {
   searchClear.classList.toggle('visible', searchInput.value.length > 0);
   renderLinks();
@@ -1167,7 +1770,7 @@ searchClear.addEventListener('click', () => {
   searchInput.focus();
 });
 
-// ===== Theme Toggle (Glassmorphism Friendly) =====
+// ===== Theme Toggle =====
 const themeToggle = document.getElementById('themeToggle');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 const savedTheme = localStorage.getItem('theme');
@@ -1185,10 +1788,30 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
-// ===== Init on Load =====
+// ===== Back to Top =====
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 400);
+});
+backTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ===== Header Nav Active State =====
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ===== Init =====
 buildCategoryFilter();
 renderLinks();
 renderTools();
+renderProjects();
+renderSkills();
+renderReading();
 </script>
 </body>
 </html>
