@@ -3,27 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E1nstein 的数字大脑 · 思考·工具·创造力</title>
-<meta name="description" content="E1nstein 的数字大脑——一个展示思考、工具与创造力的极客知识花园。好奇心驱动的探索之旅。">
+<title>E1nstein 云图 · 数字大脑</title>
+<meta name="description" content="E1nstein 云图——在云纹之间整理 AI、代码、效率工具与创造力的个人数字大脑。">
+<link rel="icon" href="assets/favicon.ico">
+<link rel="apple-touch-icon" href="assets/logo-emblem-512.png">
 <style>
 /* ===== Reset & Base ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  --bg-blur: rgba(255, 255, 255, 0.4);
-  --bg-blur-hover: rgba(255, 255, 255, 0.6);
-  --surface: rgba(255, 255, 255, 0.65);
-  --surface2: rgba(255, 255, 255, 0.8);
-  --text: #1e293b;
-  --text2: #475569;
-  --text-muted: #64748b;
-  --accent: #6366f1;
-  --accent-hover: #4f46e5;
-  --accent-light: rgba(99, 102, 241, 0.15);
-  --border: rgba(255, 255, 255, 0.45);
-  --border-active: rgba(99, 102, 241, 0.4);
-  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.06);
-  --shadow-hover: 0 8px 32px 0 rgba(99, 102, 241, 0.12);
+  --bg-gradient: linear-gradient(140deg, #f8fbff 0%, #eef8f6 48%, #e7eef8 100%);
+  --bg-blur: rgba(248, 251, 255, 0.58);
+  --bg-blur-hover: rgba(255, 255, 255, 0.78);
+  --surface: rgba(255, 255, 255, 0.68);
+  --surface2: rgba(255, 255, 255, 0.86);
+  --text: #172033;
+  --text2: #405066;
+  --text-muted: #708197;
+  --accent: #0ea5a4;
+  --accent-hover: #087f8c;
+  --accent-light: rgba(14, 165, 164, 0.13);
+  --cloud: #4f8fcf;
+  --signal: #d7a84f;
+  --grid-line: rgba(14, 165, 164, 0.09);
+  --border: rgba(124, 155, 178, 0.32);
+  --border-active: rgba(14, 165, 164, 0.46);
+  --shadow: 0 18px 44px rgba(50, 83, 105, 0.08);
+  --shadow-hover: 0 18px 44px rgba(14, 165, 164, 0.16);
   --radius: 16px;
   --radius-sm: 8px;
   --radius-lg: 24px;
@@ -31,23 +36,27 @@
   --mono: 'JetBrains Mono','SF Mono',monospace;
 }
 .dark{
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-  --bg-blur: rgba(15, 23, 42, 0.4);
-  --bg-blur-hover: rgba(15, 23, 42, 0.6);
-  --surface: rgba(30, 41, 59, 0.45);
-  --surface2: rgba(30, 41, 59, 0.7);
-  --text: #f1f5f9;
-  --text2: #cbd5e1;
-  --text-muted: #94a3b8;
-  --accent: #818cf8;
-  --accent-hover: #6366f1;
-  --accent-light: rgba(129, 140, 248, 0.2);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-active: rgba(129, 140, 248, 0.3);
-  --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-  --shadow-hover: 0 8px 32px 0 rgba(129, 140, 248, 0.15);
+  --bg-gradient: linear-gradient(140deg, #101313 0%, #17201f 52%, #211f27 100%);
+  --bg-blur: rgba(16, 19, 19, 0.62);
+  --bg-blur-hover: rgba(24, 30, 31, 0.82);
+  --surface: rgba(28, 37, 38, 0.56);
+  --surface2: rgba(36, 48, 50, 0.78);
+  --text: #eff8f7;
+  --text2: #c7d8d8;
+  --text-muted: #91a7aa;
+  --accent: #56d6ce;
+  --accent-hover: #89eee7;
+  --accent-light: rgba(86, 214, 206, 0.16);
+  --cloud: #7ab7ef;
+  --signal: #f2c263;
+  --grid-line: rgba(86, 214, 206, 0.09);
+  --border: rgba(212, 245, 241, 0.11);
+  --border-active: rgba(86, 214, 206, 0.36);
+  --shadow: 0 18px 44px rgba(0, 0, 0, 0.36);
+  --shadow-hover: 0 20px 50px rgba(86, 214, 206, 0.14);
 }
 html{scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:hidden}
 body{
   font-family:var(--font);
   background: var(--bg-gradient);
@@ -59,30 +68,57 @@ body{
   position: relative;
   overflow-x: hidden;
 }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(0deg, var(--grid-line) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.74), rgba(0,0,0,.16) 68%, transparent);
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 34px, rgba(14,165,164,.07) 35px, transparent 37px);
+  opacity:.34;
+  mix-blend-mode:multiply;
+}
+.dark body::after{mix-blend-mode:screen;opacity:.18}
 
 /* Background Decorative Elements */
-.bg-glow-1 {
-  position: fixed; width: 400px; height: 400px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
-  top: -100px; right: -100px; z-index: -1; pointer-events: none;
+.bg-cloud-stream-1 {
+  position: fixed; width: 82vw; height: 210px; border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(79, 143, 207, 0.17), rgba(14, 165, 164, 0.13), transparent);
+  top: 42px; right: -18vw; z-index: -1; pointer-events: none;
+  filter: blur(34px); transform: rotate(-7deg);
 }
-.bg-glow-2 {
-  position: fixed; width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
-  bottom: -150px; left: -150px; z-index: -1; pointer-events: none;
+.bg-cloud-stream-2 {
+  position: fixed; width: 90vw; height: 240px; border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(215, 168, 79, 0.11), rgba(79, 143, 207, 0.14), transparent);
+  bottom: 22px; left: -32vw; z-index: -1; pointer-events: none;
+  filter: blur(38px); transform: rotate(9deg);
 }
-.bg-glow-3 {
-  position: fixed; width: 350px; height: 350px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, transparent 70%);
-  top: 40%; left: -80px; z-index: -1; pointer-events: none;
+.bg-cloud-stream-3 {
+  position: fixed; width: 74vw; height: 180px; border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(86, 214, 206, 0.11), rgba(215, 168, 79, 0.08), transparent);
+  top: 46%; left: -28vw; z-index: -1; pointer-events: none;
+  filter: blur(36px); transform: rotate(-14deg);
 }
 
-/* 神经网络背景装饰 (呼应"数字大脑"主题) */
+/* 云纹 + 神经网络背景装饰 */
 .bg-neural {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  overflow: hidden; opacity: 0.08;
+  overflow: hidden; opacity: 0.11;
 }
-.dark .bg-neural { opacity: 0.12; }
+.dark .bg-neural { opacity: 0.18; }
 .neural-svg {
   width: 100%; height: 100%;
 }
@@ -107,14 +143,24 @@ body{
   stroke-linecap: round; opacity: 0.25;
 }
 .neural-wave {
-  stroke: var(--accent); stroke-width: 0.8; fill: none;
+  stroke: var(--cloud); stroke-width: 0.8; fill: none;
   stroke-linecap: round; opacity: 0.2;
   animation: neuralWave 3s ease-in-out infinite;
 }
+.cloud-scroll {
+  stroke: var(--cloud); stroke-width: 1.1; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+  opacity: .28; animation: cloudDrift 12s ease-in-out infinite;
+}
+.cloud-scroll.signal { stroke: var(--signal); opacity: .18; animation-delay: -4s; }
 .neural-wave:nth-child(2) { animation-delay: -1.5s; }
 @keyframes neuralWave {
   0%, 100% { opacity: 0.15; transform: translateX(0); }
   50% { opacity: 0.35; transform: translateX(5px); }
+}
+@keyframes cloudDrift {
+  0%, 100% { transform: translateX(-6px); opacity: .18; }
+  50% { transform: translateX(10px); opacity: .36; }
 }
 
 /* 故事线装饰元素: E=mc² 极简公式 (呼应 Einstein 品牌名) */
@@ -160,11 +206,41 @@ header{
   font-weight:700;font-size:1.25rem;white-space:nowrap;
   color: var(--text);
 }
+.logo-mark{
+  width:176px;height:42px;border-radius:10px;
+  background:rgba(255,255,255,.58);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow: 0 10px 24px rgba(50, 83, 105, 0.08);
+  flex-shrink: 0;
+  transition: transform 0.3s, border-color .3s, background .3s;
+  border:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.logo-mark::after{
+  content:"";position:absolute;inset:auto 12px 5px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  opacity:.55;
+}
+.logo-mark img{
+  width:148px;height:auto;display:block;object-fit:contain;
+}
+.logo-dark{display:none}
+.dark .logo-mark{background:rgba(18,24,25,.64)}
+.dark .logo-light{display:none}
+.dark .logo-dark{display:block}
+.logo-wordmark{
+  display:inline-flex;align-items:center;
+  color:var(--text2);font-size:.78rem;font-weight:600;
+  padding:5px 9px;border:1px solid var(--border);
+  border-radius:999px;background:var(--surface);
+}
+.logo:hover .logo-mark { transform: translateY(-1px); border-color: var(--border-active); }
+.logo:hover .logo-wordmark{color:var(--accent);border-color:var(--border-active)}
 .logo-icon{
   width:38px;height:38px;border-radius:10px;
-  background:linear-gradient(135deg, var(--accent), #a78bfa);
+  background:linear-gradient(135deg, var(--accent), var(--cloud));
   display:flex;align-items:center;justify-content:center;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 4px 12px rgba(14, 165, 164, 0.2);
   flex-shrink: 0;
   transition: transform 0.3s;
 }
@@ -201,12 +277,20 @@ header{
   grid-template-columns: 320px 1fr;
   gap: 30px;
 }
+.main-layout > *, .content-area, .sidebar { min-width: 0; }
+.content-area { grid-column: 2; }
 
 /* Sidebar */
 .sidebar {
   display: flex; flex-direction: column; gap: 20px;
-  position: sticky; top: 80px; align-self: start; max-height: calc(100vh - 100px);
+  position: fixed;
+  top: 100px;
+  left: max(24px, calc((100vw - 1200px) / 2 + 24px));
+  width: 320px;
+  max-height: calc(100vh - 124px);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 2px;
 }
 .sidebar::-webkit-scrollbar { width: 3px; }
 .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -220,6 +304,19 @@ header{
   padding: 24px;
   box-shadow: var(--shadow);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position:relative;
+  overflow:hidden;
+}
+.glass-panel::before,
+.stat-card::before,
+.tool-card::before,
+.project-card::before,
+.link-card::before,
+.explore-card::before,
+.reading-item::before{
+  content:"";position:absolute;inset:0 0 auto;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),var(--signal),transparent);
+  opacity:.34;pointer-events:none;
 }
 .glass-panel:hover {
   box-shadow: var(--shadow-hover);
@@ -228,21 +325,26 @@ header{
 
 .profile-card { text-align: center; }
 .avatar-wrap {
-  position: relative; width: 90px; height: 90px; margin: 0 auto 16px;
+  position: relative; width: 96px; height: 96px; margin: 0 auto 16px;
 }
 .avatar {
   width: 100%; height: 100%; border-radius: 50%;
-  background: linear-gradient(135deg, #818cf8, #c084fc);
+  background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(232,248,246,.74));
   display: flex; align-items: center; justify-content: center;
-  font-size: 2.2rem; font-weight: 800; color: white;
-  border: 3px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-active);
+  box-shadow: inset 0 0 0 8px rgba(255,255,255,.42), 0 14px 28px rgba(14, 165, 164, 0.12);
+  overflow:hidden;
 }
+.avatar img{width:68px;height:68px;object-fit:contain;display:block}
+.avatar-dark{display:none}
+.dark .avatar{background:linear-gradient(135deg, rgba(27,37,38,.96), rgba(40,52,54,.82));box-shadow: inset 0 0 0 8px rgba(255,255,255,.04), 0 14px 28px rgba(0,0,0,.22);}
+.dark .avatar-light{display:none}
+.dark .avatar-dark{display:block}
 .profile-card h2 { font-size: 1.35rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.02em; }
 .profile-card .title { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px; }
 .profile-card .bio {
   font-size: 0.85rem; color: var(--text2); line-height: 1.6;
-  margin-bottom: 20px; text-align: justify;
+  margin-bottom: 20px; text-align: justify; overflow-wrap: anywhere;
 }
 .social-links { display: flex; justify-content: center; gap: 12px; }
 .social-item {
@@ -264,7 +366,7 @@ header{
   letter-spacing: 0.05em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
 }
 .quote-text { font-size: 0.82rem; line-height: 1.5; color: var(--text2); font-style: italic; }
-.quote-author { font-size: 0.75rem; color: var(--text-muted); text-align: right; margin-top: 4px; }
+.quote-author { font-size: 0.75rem; color: var(--text-muted); text-align: right; margin-top: 4px; overflow-wrap: anywhere; }
 .time-display {
   font-size: 1.4rem; font-weight: 700; color: var(--text); font-family: var(--mono);
 }
@@ -535,6 +637,7 @@ header{
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   transition: all 0.2s; backdrop-filter: blur(10px);
+  position:relative;overflow:hidden;
 }
 .reading-item:hover {
   border-color: var(--border-active); background: var(--surface2);
@@ -550,6 +653,35 @@ header{
   background: var(--accent-light); color: var(--accent);
 }
 
+/* Workflow Map */
+.workflow-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px;
+}
+.workflow-card {
+  padding: 16px 18px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all 0.25s; backdrop-filter: blur(10px);
+  position: relative; overflow: hidden;
+}
+.workflow-card::before{
+  content:"";position:absolute;inset:0 0 auto;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),var(--signal),transparent);
+  opacity:.34;pointer-events:none;
+}
+.workflow-card:hover {
+  border-color: var(--border-active); background: var(--surface2);
+  transform: translateY(-2px); box-shadow: var(--shadow-hover);
+}
+.workflow-head { display:flex;align-items:center;gap:10px;margin-bottom:8px; }
+.workflow-icon {
+  width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--accent-light);color:var(--accent);font-size:1rem;flex-shrink:0;
+}
+.workflow-title { font-size:.9rem;font-weight:700;color:var(--text); }
+.workflow-desc { font-size:.78rem;color:var(--text2);line-height:1.55;margin-bottom:10px; }
+.workflow-meta { font-size:.7rem;color:var(--accent);font-weight:600; }
+
 /* Stats / Achievement Bar */
 .stats-bar {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
@@ -560,6 +692,7 @@ header{
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius);
   backdrop-filter: blur(10px); transition: all 0.2s;
+  position:relative;overflow:hidden;
 }
 .stat-card:hover {
   transform: translateY(-2px); box-shadow: var(--shadow-hover);
@@ -600,6 +733,7 @@ header{
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   transition: all 0.25s; backdrop-filter: blur(10px);
+  position:relative;overflow:hidden;
 }
 .explore-card:hover {
   border-color: var(--accent); transform: translateY(-2px);
@@ -678,12 +812,21 @@ footer a{color:var(--accent)}
 /* Responsive */
 @media(max-width:960px){
   .main-layout { grid-template-columns: 1fr; }
+  .content-area { grid-column: auto; }
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
-  .sidebar { position: static; max-height: none; overflow: visible; }
+  .sidebar { position: static; width: auto; max-height: none; overflow: visible; padding-right: 0; }
 }
 @media(max-width:640px){
+  body{width:100vw}
   .header-inner{padding:12px 16px}
-  .main-layout {padding:16px 16px 40px; gap: 20px;}
+  .logo{gap:8px;min-width:0}
+  .logo-mark{width:176px;height:42px}
+  .logo-mark img{width:148px}
+  .logo-wordmark{font-size:.72rem;padding:4px 7px;flex-shrink:0}
+  .main-layout {width:100%;max-width:100%;padding:16px 16px 40px; gap: 20px; overflow:hidden;}
+  .sidebar,.content-area,.glass-panel{width:100%;max-width:100%}
+  .profile-card .bio{text-align:left}
+  .quote-author{text-align:left}
   .link-grid{grid-template-columns:1fr}
   .link-expand-btn{width:100%;justify-content:center}
   .tools-grid{grid-template-columns:repeat(2,1fr)}
@@ -694,10 +837,15 @@ footer a{color:var(--accent)}
   .cta-links { flex-direction: column; align-items: center; }
   .nav-links { display: none; }
 }
+@media(max-width:380px){
+  .logo-mark{width:150px;height:38px}
+  .logo-mark img{width:126px}
+  .logo-wordmark{max-width:104px;white-space:normal;line-height:1.2;text-align:center}
+}
 
 /* Animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.link-card,.tool-card,.section,.sidebar > div,.project-card,.reading-item,.stat-card{animation:fadeUp .4s cubic-bezier(0.25, 1, 0.5, 1) both}
+.link-card,.tool-card,.section,.sidebar > div,.project-card,.reading-item,.stat-card,.workflow-card{animation:fadeUp .4s cubic-bezier(0.25, 1, 0.5, 1) both}
 .link-card:nth-child(1){animation-delay:.03s}
 .link-card:nth-child(2){animation-delay:.06s}
 .link-card:nth-child(3){animation-delay:.09s}
@@ -757,10 +905,10 @@ footer a{color:var(--accent)}
 </head>
 <body>
 
-<div class="bg-glow-1"></div>
-<div class="bg-glow-2"></div>
-<div class="bg-glow-3"></div>
-<!-- 神经网络背景装饰: 呼应"数字大脑"主题 -->
+<div class="bg-cloud-stream-1"></div>
+<div class="bg-cloud-stream-2"></div>
+<div class="bg-cloud-stream-3"></div>
+<!-- 云纹与神经网络背景装饰 -->
 <div class="bg-neural" aria-hidden="true">
   <svg class="neural-svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
     <!-- 神经元节点 -->
@@ -786,6 +934,9 @@ footer a{color:var(--accent)}
     <!-- 脑电波波纹 -->
     <path d="M40 20 Q60 35 80 20 Q100 5 120 20" class="neural-wave" />
     <path d="M280 30 Q300 45 320 30 Q340 15 360 30" class="neural-wave" />
+    <!-- 云纹主线 -->
+    <path d="M-10 110 C25 92 45 92 70 110 C96 129 119 128 144 108 C171 86 204 88 228 111 C252 134 285 134 312 111 C340 87 366 89 410 117" class="cloud-scroll" />
+    <path d="M-18 222 C28 198 62 202 90 224 C118 246 151 244 180 218 C211 190 252 191 284 220 C316 248 356 247 420 214" class="cloud-scroll signal" />
   </svg>
 </div>
 <!-- 故事线装饰: 爱因斯坦公式 E=mc² 作为极简装饰 -->
@@ -794,31 +945,18 @@ footer a{color:var(--accent)}
 <header>
   <div class="header-inner">
     <a href="/" class="logo">
-      <span class="logo-icon">
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- IP形象: 字母E + 神经网络连接点 (呼应"数字大脑") -->
-          <path d="M15 15h18" stroke="white" stroke-width="4" stroke-linecap="round"/>
-          <path d="M15 24h14" stroke="white" stroke-width="4" stroke-linecap="round"/>
-          <path d="M15 33h18" stroke="white" stroke-width="4" stroke-linecap="round"/>
-          <!-- 神经网络连接点 (脑电波隐喻) -->
-          <circle cx="38" cy="10" r="2.5" fill="rgba(255,255,255,0.7)" />
-          <circle cx="10" cy="38" r="2" fill="rgba(255,255,255,0.45)" />
-          <circle cx="41" cy="38" r="1.5" fill="rgba(255,255,255,0.3)" />
-          <!-- 连接线 -->
-          <path d="M38 10 L30 18" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-linecap="round"/>
-          <path d="M38 10 L41 13" stroke="rgba(255,255,255,0.15)" stroke-width="0.8" stroke-linecap="round"/>
-          <path d="M10 38 L18 30" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" stroke-linecap="round"/>
-          <path d="M10 38 Q25 30 41 38" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" fill="none" stroke-linecap="round"/>
-        </svg>
+      <span class="logo-mark">
+        <img class="logo-light" src="assets/logo-horizontal.png" alt="E1nstein">
+        <img class="logo-dark" src="assets/logo-horizontal-inverted.png" alt="E1nstein">
       </span>
-      <span>E1nstein 的数字大脑</span>
+      <span class="logo-wordmark">云图 · 数字大脑</span>
     </a>
     <div class="header-actions">
       <div class="nav-links">
-        <a href="#linksSection" class="nav-link">🔗 导航</a>
-        <a href="#toolsSection" class="nav-link">🛠️ 工具</a>
-        <a href="#projectsSection" class="nav-link">📦 项目</a>
-        <a href="#exploreSection" class="nav-link">🔬 探索</a>
+        <a href="#linksSection" class="nav-link">☁️ 云图</a>
+        <a href="#toolsSection" class="nav-link">🛠️ 工具舱</a>
+        <a href="#projectsSection" class="nav-link">◇ 节点</a>
+        <a href="#exploreSection" class="nav-link">⌁ 轨迹</a>
       </div>
       <button class="theme-btn" id="themeToggle" aria-label="切换主题">🌙</button>
     </div>
@@ -831,12 +969,15 @@ footer a{color:var(--accent)}
     <!-- About Me Card -->
     <div class="glass-panel profile-card">
       <div class="avatar-wrap">
-        <div class="avatar">E</div>
+        <div class="avatar">
+          <img class="avatar-light" src="assets/logo-emblem-512.png" alt="E1nstein logo">
+          <img class="avatar-dark" src="assets/logo-emblem-inverted.png" alt="E1nstein logo">
+        </div>
       </div>
       <h2>E1nstein</h2>
-      <div class="title">🧠 好奇心驱动的数字探索者</div>
+      <div class="title">☁️ 云图中的数字探索者</div>
       <p class="bio">
-        这里是我的「数字大脑」——一个将思考、工具与创造力交织在一起的极客知识花园。热衷探索 AI 前沿、前端技术与效率工具，相信「想象力比知识更重要」。每一行代码、每一个工具、每一段文字，都是好奇心驱动的产物。欢迎走进我的探索世界。
+        这里是我的「云图数字大脑」：在云纹之间整理 AI、代码、效率工具与创造力。每一个链接、工具、项目和阅读记录，都是一枚被点亮的知识节点。
       </p>
       <div class="social-links">
         <a href="https://github.com/girlsleague" target="_blank" class="social-item" title="GitHub">🐙</a>
@@ -848,23 +989,23 @@ footer a{color:var(--accent)}
     <!-- Widgets Card -->
     <div class="glass-panel widget-panel">
       <div class="widget-item">
-        <div class="widget-title">🕒 实时时间</div>
+        <div class="widget-title">🕒 当前坐标</div>
         <div class="time-display" id="timeDisplay">00:00:00</div>
         <div class="date-display" id="dateDisplay">2026年07月14日 星期二</div>
       </div>
       <div class="widget-item">
-        <div class="widget-title">✨ 每日灵感</div>
+        <div class="widget-title">✨ 云间灵感</div>
         <div class="quote-text" id="quoteText">“The only way to do great work is to love what you do.”</div>
         <div class="quote-author" id="quoteAuthor">— Steve Jobs</div>
       </div>
       <div class="widget-item">
-        <div class="widget-title">🌤️ 天气</div>
+        <div class="widget-title">🌤️ 云层状态</div>
         <div id="weatherWidget">
           <div class="weather-loading">正在获取天气信息…</div>
         </div>
       </div>
       <div class="widget-item">
-        <div class="widget-title">🍅 番茄钟</div>
+        <div class="widget-title">🍅 专注舱</div>
         <div class="pomodoro-display">
           <div class="pomodoro-time" id="pomodoroTime">25:00</div>
           <div class="pomodoro-label" id="pomodoroLabel">专注 · 待开始</div>
@@ -875,18 +1016,18 @@ footer a{color:var(--accent)}
         </div>
       </div>
       <div class="widget-item">
-        <div class="widget-title">🟢 运行状态</div>
+        <div class="widget-title">🟢 系统在线</div>
         <div class="status-tag">
           <span class="status-dot"></span>
           <span>所有服务运行正常</span>
         </div>
       </div>
       <div class="widget-item">
-        <div class="widget-title">⚡ 数字快照</div>
+        <div class="widget-title">⚡ 云图快照</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.78rem;color:var(--text2)">
-          <div><span style="color:var(--accent);font-weight:700">80+</span> 精选站点</div>
-          <div><span style="color:var(--accent);font-weight:700">12</span> 在线工具</div>
-          <div><span style="color:var(--accent);font-weight:700">6</span> 探索主题</div>
+          <div><span id="snapLinks" style="color:var(--accent);font-weight:700">0</span> 云图节点</div>
+          <div><span id="snapTools" style="color:var(--accent);font-weight:700">0</span> 工具舱位</div>
+          <div><span id="snapExplore" style="color:var(--accent);font-weight:700">0</span> 探索轨迹</div>
           <div><span style="color:var(--accent);font-weight:700">∞</span> 好奇心</div>
         </div>
       </div>
@@ -897,23 +1038,23 @@ footer a{color:var(--accent)}
   <main class="content-area">
     <!-- Stats Bar -->
     <div class="stats-bar">
-      <div class="stat-card"><div class="stat-number" id="statLinks">0</div><div class="stat-label">精选导航</div></div>
-      <div class="stat-card"><div class="stat-number" id="statTools">0</div><div class="stat-label">实用工具</div></div>
-      <div class="stat-card"><div class="stat-number" id="statProjects">0</div><div class="stat-label">个人项目</div></div>
-      <div class="stat-card"><div class="stat-number" id="statExplore">0</div><div class="stat-label">探索主题</div></div>
+      <div class="stat-card"><div class="stat-number" id="statLinks">0</div><div class="stat-label">云图节点</div></div>
+      <div class="stat-card"><div class="stat-number" id="statTools">0</div><div class="stat-label">工具舱位</div></div>
+      <div class="stat-card"><div class="stat-number" id="statProjects">0</div><div class="stat-label">实验节点</div></div>
+      <div class="stat-card"><div class="stat-number" id="statExplore">0</div><div class="stat-label">探索轨迹</div></div>
     </div>
 
     <!-- Tagline / Story Line -->
     <div class="tagline-area">
-      <div class="tagline-text">「想象力比知识更重要，因为知识是有限的，而想象力概括着世界的一切。」</div>
-      <div class="tagline-author">— Albert Einstein</div>
+      <div class="tagline-text">在云纹之间整理工具、想法与实验，把零散灵感连接成一张可继续生长的知识网络。</div>
+      <div class="tagline-author">E1nstein Cloud Atlas</div>
     </div>
 
     <!-- Search Box -->
     <div class="search-container">
       <div class="search-box">
         <span class="icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="检索精选网站、工具或分类关键词…" autocomplete="off">
+        <input type="text" id="searchInput" placeholder="检索云图节点、工具舱或分类信号…" autocomplete="off">
         <button class="search-clear" id="searchClear">✕</button>
       </div>
     </div>
@@ -923,7 +1064,7 @@ footer a{color:var(--accent)}
 
     <!-- Navigation Links -->
     <div class="section" id="linksSection">
-      <div class="section-title"><span class="emoji">🔗</span> 极客导航</div>
+      <div class="section-title"><span class="emoji">☁️</span> 云图导航</div>
       <div class="link-grid" id="linkGrid"></div>
       <div class="empty-state" id="emptyState">
         <div class="icon">🔍</div>
@@ -933,39 +1074,45 @@ footer a{color:var(--accent)}
 
     <!-- Tools -->
     <div class="section" id="toolsSection">
-      <div class="section-title"><span class="emoji">🛠️</span> 在线小工具</div>
+      <div class="section-title"><span class="emoji">🛠️</span> 工具舱</div>
       <div class="tools-grid" id="toolsGrid"></div>
     </div>
 
     <!-- Projects -->
     <div class="section" id="projectsSection">
-      <div class="section-title"><span class="emoji">📦</span> 个人项目</div>
+      <div class="section-title"><span class="emoji">◇</span> 实验节点</div>
       <div class="project-grid" id="projectGrid"></div>
     </div>
 
     <!-- Skills -->
     <div class="section" id="skillsSection">
-      <div class="section-title"><span class="emoji">💡</span> 技术栈</div>
+      <div class="section-title"><span class="emoji">⌘</span> 能力矩阵</div>
       <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+
+    <!-- Workflow Map -->
+    <div class="section" id="workflowSection">
+      <div class="section-title"><span class="emoji">⌬</span> 工作流地图</div>
+      <div class="workflow-grid" id="workflowGrid"></div>
     </div>
 
     <!-- Reading -->
     <div class="section" id="readingSection">
-      <div class="section-title"><span class="emoji">📖</span> 正在阅读</div>
+      <div class="section-title"><span class="emoji">📖</span> 知识补给</div>
       <div class="reading-list" id="readingList"></div>
     </div>
 
     <!-- Exploration -->
     <div class="section" id="exploreSection">
-      <div class="section-title"><span class="emoji">🔬</span> 最近探索</div>
+      <div class="section-title"><span class="emoji">⌁</span> 探索轨迹</div>
       <div class="explore-grid" id="exploreGrid"></div>
     </div>
 
     <!-- CTA: Connect -->
     <div class="cta-section glass-panel">
-      <div class="cta-icon">🤝</div>
-      <div class="cta-title">一起探索？</div>
-      <div class="cta-desc">如果你对 AI、前端开发或效率工具有兴趣，欢迎通过以下方式和我建立连接。无论是技术交流、项目合作还是随便聊聊，都欢迎。</div>
+      <div class="cta-icon">☁️</div>
+      <div class="cta-title">接入这张云图？</div>
+      <div class="cta-desc">如果你也在探索 AI、前端开发、效率工具或个人知识系统，欢迎来交换信号。技术交流、项目合作、灵感碰撞，都可以从一个节点开始。</div>
       <div class="cta-links">
         <a href="https://github.com/girlsleague" target="_blank" rel="noopener noreferrer" class="cta-btn github"><span class="cta-btn-icon">🐙</span> GitHub</a>
         <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="cta-btn x"><span class="cta-btn-icon">⚡</span> X / Twitter</a>
@@ -979,7 +1126,7 @@ footer a{color:var(--accent)}
 <button class="back-top" id="backTop">↑</button>
 
 <footer>
-  <p>© 2026 <a href="https://github.com/girlsleague" target="_blank">E1nstein</a> · 好奇心驱动的数字大脑 · <span id="visitYear">0</span> 次探索</p>
+  <p>© 2026 <a href="https://github.com/girlsleague" target="_blank">E1nstein</a> · 云图数字大脑 · <span id="visitYear">0</span> 次探索</p>
 </footer>
 
 <script>
@@ -1016,13 +1163,13 @@ const QUOTES = [
 
 // ===== Categories Data (7 个分类) =====
 const CATEGORIES = [
-  { id: 'ai', label: '🤖 AI 前沿' },
-  { id: 'dev', label: '💻 编程开发' },
-  { id: 'design', label: '🎨 创意设计' },
-  { id: 'news', label: '📰 科技资讯' },
-  { id: 'tool', label: '🔧 效率工具' },
-  { id: 'learn', label: '📚 学习资源' },
-  { id: 'fun', label: '🎯 有趣发现' },
+  { id: 'ai', label: '🤖 智能云核' },
+  { id: 'dev', label: '💻 代码基建' },
+  { id: 'design', label: '🎨 视觉生成' },
+  { id: 'news', label: '📡 信号雷达' },
+  { id: 'tool', label: '🔧 工作流' },
+  { id: 'learn', label: '📚 知识源' },
+  { id: 'fun', label: '✨ 灵感支线' },
 ];
 
 // ===== Links Data (80+ 条) =====
@@ -1152,24 +1299,45 @@ const TOOLS = [
 const PROJECTS = [
   {
     name: 'E1nstein 个人门户',
-    desc: '基于玻璃拟态设计的个人综合门户网站，聚合精选导航、实用在线工具与创意灵感。纯前端实现，支持深色模式。',
-    tags: ['HTML/CSS', 'JavaScript', 'Glassmorphism', 'Vercel'],
-    icon: '🏠',
+    desc: '云纹科技风的个人数字大脑，聚合精选导航、工具舱、阅读补给与探索轨迹。纯前端实现，部署在 Vercel。',
+    tags: ['HTML/CSS', 'JavaScript', 'Cloud Atlas', 'Vercel'],
+    icon: '☁️',
     link: 'https://e1nstein.com'
   },
   {
     name: '导航站 nav-site',
-    desc: '极客风格的个人导航标签页，支持多种分类筛选、搜索与在线小工具。一键部署到 Vercel。',
-    tags: ['前端', '单页应用', '响应式'],
+    desc: '把 AI、开发、设计、资讯与效率工具整理成可搜索的云图节点，适合作为日常启动页和工具入口。',
+    tags: ['前端', '单页应用', '响应式云图'],
     icon: '🧭',
     link: 'https://nav-site-ten.vercel.app'
   },
   {
     name: '更多项目开发中',
-    desc: '正在构思和建设更多有趣的项目，包括 AI 工具集成、自动化工作流等，敬请期待。',
+    desc: '正在构思 AI 工具集成、自动化工作流与个人知识库系统，把更多实验节点接入这张云图。',
     tags: ['计划中', 'AI', '自动化'],
-    icon: '🚧',
+    icon: '◇',
     link: 'https://github.com/girlsleague'
+  },
+  {
+    name: 'AI 工具舱原型',
+    desc: '计划把常用文本处理、提示词模板、模型调用记录与网页小工具整合成一个轻量的个人 AI 控制台。',
+    tags: ['AI 工具', 'Prompt', '原型中'],
+    icon: '🤖',
+    link: 'https://github.com/girlsleague'
+  },
+  {
+    name: '个人知识库系统',
+    desc: '围绕 Obsidian、Git 和 AI 摘要建立本地优先知识库，让阅读、项目笔记和灵感可以长期沉淀。',
+    tags: ['Obsidian', 'PKM', '本地优先'],
+    icon: '🧠',
+    link: 'https://github.com/girlsleague'
+  },
+  {
+    name: '云纹设计系统',
+    desc: '持续沉淀本站的云纹科技视觉语言，包括配色、组件、光轨、背景纹理与品牌资产使用规则。',
+    tags: ['Design System', '云纹', '视觉实验'],
+    icon: '☁️',
+    link: 'https://e1nstein.com'
   },
 ];
 
@@ -1179,14 +1347,29 @@ const SKILLS = [
   { name: 'JavaScript', icon: '📜' },
   { name: 'TypeScript', icon: '📘' },
   { name: 'React', icon: '⚛️' },
+  { name: 'Next.js', icon: '▲' },
   { name: 'Vue.js', icon: '💚' },
   { name: 'Node.js', icon: '🟢' },
   { name: 'Python', icon: '🐍' },
   { name: 'Git', icon: '🔀' },
   { name: 'Docker', icon: '🐳' },
+  { name: 'Vercel', icon: '▲' },
+  { name: 'Cloudflare', icon: '☁️' },
   { name: 'Tailwind CSS', icon: '🎨' },
   { name: 'AI/ML Prompt', icon: '🤖' },
+  { name: 'Agent Workflow', icon: '🧭' },
+  { name: 'Obsidian PKM', icon: '💎' },
   { name: 'Figma', icon: '🖌️' },
+];
+
+// ===== Workflow Data =====
+const WORKFLOWS = [
+  { title: 'AI 编程闭环', desc: '从需求拆解、代码实现、截图验证到 Git 提交，把 AI Agent 作为持续协作的开发搭档。', icon: '🤖', meta: 'Codex / Git / Vercel' },
+  { title: '知识捕获链路', desc: '把阅读、网页、灵感和项目复盘沉淀到本地知识库，再用标签和链接形成长期可检索网络。', icon: '🧠', meta: 'Obsidian / Markdown / Git' },
+  { title: '设计迭代链路', desc: '先确定主题叙事，再落到设计 token、组件状态、响应式验证和设计规范文档。', icon: '☁️', meta: 'Design System / Screenshots' },
+  { title: '部署发布链路', desc: 'GitHub 管理源码，Vercel 自动构建，Cloudflare 负责域名与全球网络入口。', icon: '📡', meta: 'GitHub / Vercel / Cloudflare' },
+  { title: '工具沉淀链路', desc: '把高频操作抽成站内工具舱，让个人站不只是展示页，也能成为日常可用入口。', icon: '🛠️', meta: 'Vanilla JS / Local Tools' },
+  { title: '内容更新链路', desc: '项目、阅读、探索轨迹持续补充，用轻量数据数组维护，避免过早引入复杂后端。', icon: '✍️', meta: 'Static Data / Iteration' },
 ];
 
 // ===== Reading Data =====
@@ -1197,16 +1380,24 @@ const READING = [
   { title: '黑客与画家', desc: 'Paul Graham 的硅谷创业随笔', icon: '📖', status: '在读' },
   { title: 'AI 新生', desc: '人工智能与人类的未来', icon: '🧠', status: '计划读' },
   { title: '程序员修炼之道', desc: '软件开发者的成长之路', icon: '📗', status: '已读完' },
+  { title: 'Designing Data-Intensive Applications', desc: '数据密集型系统的架构原则', icon: '🗄️', status: '计划读' },
+  { title: 'Building a Second Brain', desc: '个人知识管理与信息复用方法', icon: '🧩', status: '在读' },
+  { title: 'Refactoring UI', desc: '面向开发者的实用界面设计方法', icon: '🎛️', status: '摘录中' },
+  { title: 'The Design of Everyday Things', desc: '可用性、反馈与交互设计经典', icon: '🧭', status: '计划读' },
 ];
 
-// ===== Exploration Data (故事线: 好奇心驱动的探索) =====
+// ===== Exploration Data (故事线: 云图中的探索轨迹) =====
 const EXPLORATIONS = [
-  { tag: 'AI', title: 'DeepSeek R1 推理机制', desc: '研究国产开源推理模型的思维链(CoT)机制与其在编程场景下的实际表现。', icon: '🧠', time: '探索中' },
-  { tag: '前端', title: 'React Server Components 深度实践', desc: '在 Next.js App Router 下探索 RSC 与客户端组件的边界与最佳组合模式。', icon: '⚛️', time: '深入中' },
-  { tag: '效率', title: '个人知识管理系统构建', desc: '用 Obsidian + Git + AI 打造第二大脑，探索 Zettelkasten 方法的数字化实践。', icon: '🧩', time: '迭代中' },
-  { tag: 'AI', title: 'Claude Code Agent 工作流', desc: '研究 AI Agent 在真实项目中的多步骤编排、工具调用与自主决策模式。', icon: '🤖', time: '实践总结' },
-  { tag: '设计', title: '玻璃拟态设计系统完善', desc: '打磨个人门户的 Design Token 体系，从组件库到 design.md 的标准化输出。', icon: '🎨', time: '持续优化' },
-  { tag: '工具', title: 'Vercel + Cloudflare 架构', desc: '探索边缘计算与传统 Serverless 的混合部署架构，优化全球访问速度。', icon: '☁️', time: '研究中' },
+  { tag: '智能云核', title: 'DeepSeek R1 推理机制', desc: '观察推理模型的思维链(CoT)机制，以及它在真实编程场景里的表现边界。', icon: '🧠', time: '探索中' },
+  { tag: '代码基建', title: 'React Server Components 深度实践', desc: '在 Next.js App Router 下梳理 RSC 与客户端组件的组合模式。', icon: '⚛️', time: '深入中' },
+  { tag: '知识源', title: '个人知识管理系统构建', desc: '用 Obsidian + Git + AI 打造第二大脑，让笔记、代码和灵感互相索引。', icon: '🧩', time: '迭代中' },
+  { tag: '智能云核', title: 'Claude Code Agent 工作流', desc: '研究 AI Agent 在真实项目中的多步骤编排、工具调用与自主决策模式。', icon: '🤖', time: '实践总结' },
+  { tag: '视觉生成', title: '云纹科技设计系统', desc: '把东方云纹、玻璃面板、数据光轨和品牌 logo 整合为新的个人站视觉语言。', icon: '☁️', time: '持续优化' },
+  { tag: '工作流', title: 'Vercel + Cloudflare 架构', desc: '探索边缘网络、静态托管与域名解析的组合，优化全球访问体验。', icon: '📡', time: '研究中' },
+  { tag: '工作流', title: '静态站内容数据化', desc: '用结构化数组维护导航、项目、阅读和探索内容，在不引入后端的情况下保持可迭代。', icon: '🗂️', time: '优化中' },
+  { tag: '知识源', title: '阅读摘录自动整理', desc: '计划把阅读摘录、网页收藏和项目复盘汇总成可搜索的主题索引。', icon: '📖', time: '构思中' },
+  { tag: '视觉生成', title: '移动端云图体验', desc: '继续打磨小屏下的 logo、卡片密度、文本边界和触控区域，让站点更适合作为随身入口。', icon: '📱', time: '迭代中' },
+  { tag: '智能云核', title: '个人 AI 助手入口', desc: '探索把提示词模板、常用工具和模型调用记录整合到个人站的轻量方式。', icon: '✨', time: '计划中' },
 ];
 
 // ===== Elements =====
@@ -1215,6 +1406,7 @@ const linkGrid = document.getElementById('linkGrid');
 const toolsGrid = document.getElementById('toolsGrid');
 const projectGrid = document.getElementById('projectGrid');
 const skillsGrid = document.getElementById('skillsGrid');
+const workflowGrid = document.getElementById('workflowGrid');
 const readingList = document.getElementById('readingList');
 const exploreGrid = document.getElementById('exploreGrid');
 const searchInput = document.getElementById('searchInput');
@@ -1254,6 +1446,9 @@ document.getElementById('statLinks').textContent = LINKS.length;
 document.getElementById('statTools').textContent = TOOLS.length;
 document.getElementById('statProjects').textContent = PROJECTS.length;
 document.getElementById('statExplore').textContent = EXPLORATIONS.length;
+document.getElementById('snapLinks').textContent = `${LINKS.length}+`;
+document.getElementById('snapTools').textContent = TOOLS.length;
+document.getElementById('snapExplore').textContent = EXPLORATIONS.length;
 
 // ===== Visit Counter (localStorage) =====
 (function() {
@@ -1394,6 +1589,20 @@ function renderProjects() {
 function renderSkills() {
   skillsGrid.innerHTML = SKILLS.map(s => `
     <span class="skill-tag">${s.icon} ${s.name}</span>
+  `).join('');
+}
+
+// ===== Render Workflows =====
+function renderWorkflows() {
+  workflowGrid.innerHTML = WORKFLOWS.map(w => `
+    <div class="workflow-card">
+      <div class="workflow-head">
+        <span class="workflow-icon">${w.icon}</span>
+        <div class="workflow-title">${w.title}</div>
+      </div>
+      <div class="workflow-desc">${w.desc}</div>
+      <div class="workflow-meta">${w.meta}</div>
+    </div>
   `).join('');
 }
 
@@ -1848,21 +2057,21 @@ function openTool(action, name) {
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
           <div style="text-align:center">
             <label style="display:block;font-size:.8rem;color:var(--text-muted);margin-bottom:8px">选择颜色</label>
-            <input id="cpColor" type="color" value="#6366f1" style="width:80px;height:80px;border:2px solid var(--border);border-radius:12px;cursor:pointer;background:none;padding:4px">
+            <input id="cpColor" type="color" value="#0ea5a4" style="width:80px;height:80px;border:2px solid var(--border);border-radius:12px;cursor:pointer;background:none;padding:4px">
           </div>
           <div style="text-align:center">
             <label style="display:block;font-size:.8rem;color:var(--text-muted);margin-bottom:8px">颜色预览</label>
-            <div id="cpPreview" style="width:80px;height:80px;border-radius:12px;background:#6366f1;margin:0 auto;border:2px solid var(--border);transition:background .2s"></div>
+            <div id="cpPreview" style="width:80px;height:80px;border-radius:12px;background:#0ea5a4;margin:0 auto;border:2px solid var(--border);transition:background .2s"></div>
           </div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <input id="cpHex" class="modal-input" value="#6366f1" readonly style="text-align:center;font-family:var(--mono);margin-bottom:0">
-          <input id="cpRgb" class="modal-input" value="rgb(99,102,241)" readonly style="text-align:center;font-family:var(--mono);margin-bottom:0">
+          <input id="cpHex" class="modal-input" value="#0ea5a4" readonly style="text-align:center;font-family:var(--mono);margin-bottom:0">
+          <input id="cpRgb" class="modal-input" value="rgb(14,165,164)" readonly style="text-align:center;font-family:var(--mono);margin-bottom:0">
         </div>
         <div style="margin-top:14px">
           <label style="display:block;font-size:.8rem;color:var(--text-muted);margin-bottom:6px">配色方案</label>
           <div id="cpPalette" style="display:flex;gap:8px;flex-wrap:wrap">
-            ${['#6366f1','#ec4899','#14b8a6','#f59e0b','#ef4444','#8b5cf6','#10b981','#3b82f6','#f97316','#84cc16'].map(c =>
+            ${['#0ea5a4','#4f8fcf','#d7a84f','#087f8c','#56d6ce','#172033','#708197','#f2c263','#c7d8d8','#211f27'].map(c =>
               `<div style="width:36px;height:36px;border-radius:8px;background:${c};cursor:pointer;border:2px solid transparent;transition:all .15s" data-color="${c}"></div>`
             ).join('')}
           </div>
@@ -2134,6 +2343,7 @@ renderLinks();
 renderTools();
 renderProjects();
 renderSkills();
+renderWorkflows();
 renderReading();
 renderExplorations();
 </script>
